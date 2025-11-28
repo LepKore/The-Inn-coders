@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">La Posada</string>
+    <string name="la_posada_title">LA POSADA</string>
+    <string name="loginText">Iniciar Sesión</string>
+    <string name="registerText">Registrarse</string>
+    <string name="LaPosadaLogo_contentDescription">El logo de la aplicación La Posada</string>
+
 </resources>
