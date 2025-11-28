@@ -23,20 +23,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.15"
         />
-
     <ImageView
         android:id="@+id/imageView_LaPosadaLogo"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:contentDescription="@string/LaPosadaLogo_contentDescription"
         app:layout_constraintVertical_weight="1"
-        android:src="@drawable/La_posada_logo"
+        android:src="@drawable/la_posada_logo"
         app:layout_constraintTop_toBottomOf="@id/textView_LaPosadaTitle"
         app:layout_constraintBottom_toTopOf="@id/linearLayout_Buttons"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
-
     <LinearLayout
         android:id="@+id/linearLayout_Buttons"
         android:layout_width="match_parent"
