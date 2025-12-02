@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".start_menu_activity"
-
+    tools:context=".StartMenu_activity"
+    android:background="@drawable/fondo_default"
     >
 
     <TextView
@@ -16,13 +16,15 @@
         android:gravity="center"
         android:text="@string/la_posada_title"
         android:textSize="80sp"
+        style="@style/pantallasTheme"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15"
+        app:layout_constraintVertical_bias="0.1"
         />
+
     <ImageView
         android:id="@+id/imageView_LaPosadaLogo"
         android:layout_width="wrap_content"
@@ -45,8 +47,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:orientation="vertical"
-        android:gravity="center"
+        android:gravity="top|center"
         android:weightSum="10"
+        android:padding="20dp"
         >
         <Button
             style="@style/buttonInterface"
@@ -54,13 +57,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/loginText"
-
-
+            android:backgroundTint="@color/orange"
             />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             />
         <Button
             style="@style/buttonInterface"
@@ -68,6 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/registerText"
+            android:backgroundTint="@color/orange"
             />
 
 

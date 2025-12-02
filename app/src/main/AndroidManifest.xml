@@ -12,7 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LaPosada">
         <activity
-            android:name=".start_menu_activity"
+            android:name=".Register_activity"
+            android:exported="false" />
+        <activity
+            android:name=".Login_activity"
+            android:exported="false" />
+        <activity
+            android:name=".StartMenu_activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,9 +28,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>
