@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".StartMenu_activity"
-    android:background="@drawable/fondo_default"
+    android:background="@drawable/fondoDefault"
     >
 
     <TextView
@@ -31,7 +31,7 @@
         android:layout_height="0dp"
         android:contentDescription="@string/LaPosadaLogo_contentDescription"
         app:layout_constraintVertical_weight="1"
-        android:src="@drawable/la_posada_logo"
+        android:src="@drawable/laPosadaLogo"
         app:layout_constraintTop_toBottomOf="@id/textView_LaPosadaTitle"
         app:layout_constraintBottom_toTopOf="@id/linearLayout_Buttons"
         app:layout_constraintStart_toStartOf="parent"
