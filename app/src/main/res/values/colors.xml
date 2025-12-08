@@ -61,4 +61,6 @@
     <color name="accent_cyan">#18FFFF</color>
     <color name="accent_lime">#AEEA00</color>
 
+    <color name="blue_darker">#041A80</color>
+
 </resources>

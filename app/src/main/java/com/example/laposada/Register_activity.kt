@@ -2,6 +2,7 @@ package com.example.laposada
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -26,13 +27,23 @@ class Register_activity : AppCompatActivity() {
             insets
         }
         irStart()
+        confirmarPassword()
     }
 
     fun irStart() {
         binding.buttonBackButton.setOnClickListener {
-            val intent = Intent(context, StartMenu_activity::class.java)
+            onBackPressedDispatcher.onBackPressed()
+        }
+    }
+
+    fun confirmarPassword() {
+        binding.buttonSend.setOnClickListener {
+            // TODO
+            // Implementacion de cambio a home y validacion de password
+            val intent = Intent(context, Login_activity::class.java)
             startActivity(intent)
         }
+
     }
 
 }

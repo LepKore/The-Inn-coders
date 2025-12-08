@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Register_activity"
-    android:background="@drawable/fondoDefault"
+    android:background="@drawable/fondo_default"
     >
 
 
@@ -33,17 +33,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/registerText"
-        android:textSize="40dp"
-        style="@style/pantallasTheme"
+        android:textSize="40sp"
+        android:textColor="@color/white"
+        android:fontFamily="serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_superior"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintVertical_bias="0.15"
+        />
 
 
     <TextView
-        style="@style/pantallasTheme"
         android:id="@+id/textView_loginUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,10 +54,10 @@
         app:layout_constraintVertical_bias="0.2"
         android:text="@string/user"
         android:textSize="20sp"
+        android:textColor="@color/white"
         />
 
     <EditText
-        style="@style/pantallasTheme"
         android:id="@+id/editText_loginUser"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -66,13 +67,14 @@
         app:layout_constraintTop_toBottomOf="@id/textView_loginUser"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="@color/orange"
         android:maxLines="1"
         android:inputType="textPersonName"
+        android:textColorHint="@color/gray_500"
+        android:textColor="@color/white"
         />
 
     <TextView
-        style="@style/pantallasTheme"
         android:id="@+id/textView_passwordUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -82,10 +84,10 @@
         app:layout_constraintVertical_bias="0.2"
         android:text="@string/password"
         android:textSize="20sp"
+        android:textColor="@color/white"
         />
 
     <EditText
-        style="@style/pantallasTheme"
         android:id="@+id/editText_passwordUser"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -95,26 +97,26 @@
         app:layout_constraintTop_toBottomOf="@id/textView_passwordUser"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="@color/orange"
         android:maxLines="1"
         android:inputType="textPassword"
+        android:textColorHint="@color/gray_500"
+        android:textColor="@color/white"
         />
 
     <TextView
-        style="@style/pantallasTheme"
         android:id="@+id/textView_confirmPasswordUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/editText_passwordUser"
         app:layout_constraintStart_toStartOf="@id/editText_passwordUser"
         android:layout_marginTop="20dp"
-        app:layout_constraintVertical_bias="0.2"
         android:text="@string/confirmPassword"
         android:textSize="20sp"
+        android:textColor="@color/white"
         />
 
     <EditText
-        style="@style/pantallasTheme"
         android:id="@+id/editText_confirmPasswordUser"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -124,21 +126,38 @@
         app:layout_constraintTop_toBottomOf="@id/textView_confirmPasswordUser"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="@color/orange"
         android:maxLines="1"
         android:inputType="textPassword"
+        android:textColorHint="@color/gray_500"
+        android:textColor="@color/white"
+        />
+
+    <TextView
+        android:id="@+id/textView_errorPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/editText_confirmPasswordUser"
+        app:layout_constraintStart_toStartOf="@id/editText_confirmPasswordUser"
+        app:layout_constraintVertical_bias="0.2"
+        android:textColor="@color/blue"
+        android:text="@string/passwordError"
+        android:textSize="20sp"
+        android:visibility="gone"
         />
 
     <Button
+        android:id="@+id/button_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sendText"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@id/editText_confirmPasswordUser"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:backgroundTint="@color/orange"
+        android:fontFamily="serif"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

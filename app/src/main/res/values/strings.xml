@@ -12,5 +12,10 @@
     <string name="confirmPassword">Confimar Contraseña</string>
     <string name="confirmPasswordHInt">Repita su contraseña</string>
     <string name="sendText">Enviar</string>
+    <string name="passwordError">La contraseña no coincide</string>
+    <string name="tables_title">MESAS</string>
+    <string name="reservas_title">RESERVAS</string>
+    <string name="food_title">COMIDA</string>
+    <string name="games_title">JUEGOS</string>
 
 </resources>

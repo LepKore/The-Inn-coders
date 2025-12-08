@@ -6,24 +6,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".StartMenu_activity"
-    android:background="@drawable/fondoDefault"
+    android:background="@drawable/fondo_default"
     >
 
     <TextView
+        android:fontFamily="serif"
         android:id="@+id/textView_LaPosadaTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/la_posada_title"
         android:textSize="80sp"
-        style="@style/pantallasTheme"
-
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1"
-        />
+        app:layout_constraintVertical_bias="0.099" />
 
     <ImageView
         android:id="@+id/imageView_LaPosadaLogo"
@@ -31,7 +31,7 @@
         android:layout_height="0dp"
         android:contentDescription="@string/LaPosadaLogo_contentDescription"
         app:layout_constraintVertical_weight="1"
-        android:src="@drawable/laPosadaLogo"
+        android:src="@drawable/la_posada_logo"
         app:layout_constraintTop_toBottomOf="@id/textView_LaPosadaTitle"
         app:layout_constraintBottom_toTopOf="@id/linearLayout_Buttons"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,12 +52,13 @@
         android:padding="20dp"
         >
         <Button
-            style="@style/buttonInterface"
+            android:fontFamily="serif"
             android:id="@+id/button_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/loginText"
             android:backgroundTint="@color/orange"
+            android:textSize="30sp"
             />
         <TextView
             android:layout_width="match_parent"
@@ -65,12 +66,13 @@
             android:layout_weight="2"
             />
         <Button
-            style="@style/buttonInterface"
+            android:fontFamily="serif"
             android:id="@+id/button_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/registerText"
             android:backgroundTint="@color/orange"
+            android:textSize="30sp"
             />
 
 

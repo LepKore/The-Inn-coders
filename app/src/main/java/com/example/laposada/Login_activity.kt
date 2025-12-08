@@ -28,13 +28,19 @@ class Login_activity : AppCompatActivity() {
         }
 
         irStart()
+        irHome()
 
 
     }
 
     fun irStart() {
         binding.buttonBackButton.setOnClickListener {
-            val intent = Intent(context, StartMenu_activity::class.java)
+            onBackPressedDispatcher.onBackPressed()
+        }
+    }
+    fun irHome() {
+        binding.buttonSend.setOnClickListener {
+            val intent = Intent(context, HomeMenu_Activity::class.java)
             startActivity(intent)
         }
     }
