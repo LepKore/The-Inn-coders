@@ -7,11 +7,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.laposada.databinding.ActivityHomeMenuBinding
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
 class HomeMenu_Activity : AppCompatActivity() {
 
     val context: Context = this
-    lateinit var binding: ActivityHomeMenuBinding
+    private lateinit var binding: ActivityHomeMenuBinding
+    private lateinit var auth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +24,8 @@ class HomeMenu_Activity : AppCompatActivity() {
 
         binding = ActivityHomeMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        auth = Firebase.auth
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -26,16 +33,20 @@ class HomeMenu_Activity : AppCompatActivity() {
             insets
         }
 
+
+
         irBack()
 
     }
 
     fun irBack() {
         binding.buttonBackButton.setOnClickListener {
+            auth.signOut()
             onBackPressedDispatcher.onBackPressed()
         }
 
     }
+
 
 
 }

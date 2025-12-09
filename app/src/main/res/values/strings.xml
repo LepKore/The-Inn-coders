@@ -5,8 +5,8 @@
     <string name="registerText">Registrarse</string>
     <string name="LaPosadaLogo_contentDescription">El logo de la aplicación La Posada</string>
 
-    <string name="usuarioHint">Ingresa tu nombre de usuario</string>
-    <string name="user">Usuario</string>
+    <string name="mailHint">Ingresa tu nombre de usuario</string>
+    <string name="email">Correo Electrónico</string>
     <string name="password">Contraseña</string>
     <string name="passwordHint">Ingrese su contraseña</string>
     <string name="confirmPassword">Confimar Contraseña</string>

@@ -28,14 +28,19 @@
         >
         <Button
             android:id="@+id/button_backButton"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+
             android:backgroundTint="@color/pastel_orange"
-            app:layout_constraintDimensionRatio="1:1"
+            android:text="Cerrar Sesion"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/black"
+            android:textSize="20sp"
             />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
