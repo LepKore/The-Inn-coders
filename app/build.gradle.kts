@@ -8,9 +8,7 @@ plugins {
 
 android {
     namespace = "com.example.laposada"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.laposada"

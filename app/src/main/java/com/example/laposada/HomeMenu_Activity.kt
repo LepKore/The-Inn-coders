@@ -1,6 +1,7 @@
 package com.example.laposada
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -33,10 +34,8 @@ class HomeMenu_Activity : AppCompatActivity() {
             insets
         }
 
-
-
         irBack()
-
+        setupListeners()
     }
 
     fun irBack() {
@@ -47,6 +46,11 @@ class HomeMenu_Activity : AppCompatActivity() {
 
     }
 
-
+    private fun setupListeners() {
+        binding.cardViewFoodMenu.setOnClickListener {
+            val intent = Intent(this, FoodMenuActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
 }
