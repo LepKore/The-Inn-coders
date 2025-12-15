@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/guideLine_top"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/orange_dark"
+        android:background="@color/purple_blue"
         android:weightSum="100"
         >
         <Button
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
 
-            android:backgroundTint="@color/pastel_orange"
+            android:backgroundTint="@color/red_dark"
             android:text="Cerrar Sesion"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

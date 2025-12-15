@@ -1,5 +1,6 @@
 package com.example.laposada
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -49,9 +50,10 @@ class FoodMenuActivity : AppCompatActivity() {
         binding.buttonBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
-
+        
         binding.buttonEdit.setOnClickListener {
-            // TODO: Implementar edicion
+            val intent = Intent(this, EditMenuOptionsActivity::class.java)
+            startActivity(intent)
         }
     }
 

@@ -15,6 +15,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LaPosada">
         <activity
+            android:name=".DetailFoodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditFoodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddFoodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DeleteFoodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditMenuOptionsActivity"
+            android:exported="false" />
+        <activity
             android:name=".FoodMenuActivity"
             android:exported="false" />
         <activity

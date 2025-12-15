@@ -53,6 +53,7 @@
     <color name="purple_dark">#7B1FA2</color>
     <color name="teal_dark">#00796B</color>
     <color name="orange_dark">#F57C00</color>
+    <color name="purple_blue">#686bbd</color>
 
     <!-- Acentos -->
     <color name="accent_blue">#448AFF</color>
