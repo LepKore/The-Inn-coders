@@ -37,16 +37,6 @@ class HomeMenu_Activity : AppCompatActivity() {
 
         irBack()
         setupListeners()
-
-        // Referencia al botón
-        val botonMesas = findViewById<Button>(R.id.boton_mesas)
-
-        // Configurar el OnClickListener para el botón
-        botonMesas.setOnClickListener {
-            // Crear un Intent para redirigir a otra actividad (ejemplo: Selection_Of_Tables)
-            val intent = Intent(this, Selection_Of_Tables::class.java) // Cambia a la actividad de destino
-            startActivity(intent)
-        }
     }
 
 
@@ -58,13 +48,21 @@ class HomeMenu_Activity : AppCompatActivity() {
 
     }
 
-    private fun setupListeners() {
+     fun setupListeners() {
         binding.cardViewFoodMenu.setOnClickListener {
             val intent = Intent(this, FoodMenuActivity::class.java)
             startActivity(intent)
         }
+
+        binding.cardViewGamesMenu.setOnClickListener {
+            val intent = Intent(this, GamesMenuActivity::class.java)
+            startActivity(intent)
+        }
+        
+        binding.cardViewTablesMenu.setOnClickListener {
+            val intent = Intent(this, Selection_Of_Tables::class.java)
+            startActivity(intent)
+        }
     }
-
-
 
 }

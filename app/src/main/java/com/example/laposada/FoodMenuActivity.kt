@@ -71,12 +71,6 @@ class FoodMenuActivity : AppCompatActivity() {
             insets
         }
 
-        lifecycleScope.launch {
-            guardarDatosBD()
-            guardarDatosBD()
-            guardarDatosBD()
-            guardarDatosBD()
-        }
 
         setupRecyclerView()
         setupListeners()
