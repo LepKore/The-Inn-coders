@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Map_Tables"
+    android:background="@drawable/fondo_default">
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_centro_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.48" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_centro_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.45" />
+
+
+
+    <LinearLayout
+        android:id="@+id/mapa_arriba"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="400dp"
+        android:orientation="horizontal"
+        android:background="@color/brown"
+        app:layout_constraintTop_toBottomOf="@id/layout_superior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:elevation="0dp"/>
+
+    <LinearLayout
+        android:id="@+id/mapa_abajo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:background="@color/brown"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="200dp"
+        app:layout_constraintTop_toBottomOf="@id/mapa_arriba"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline_centro_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="0dp"/>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/mesa_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="300dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="150dp"
+        app:cardCornerRadius="16dp"
+        android:backgroundTint="@color/green"
+        app:layout_constraintStart_toStartOf="@id/guideline_centro_vertical"
+        app:layout_constraintTop_toTopOf="@id/guideline_centro_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/text_mesa2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="2"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:background="@color/green"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/mesa_1"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@drawable/mesa_hex_1"
+        android:gravity="center"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintEnd_toEndOf="@id/mapa_abajo"
+        app:layout_constraintBottom_toBottomOf="@id/mapa_abajo">
+
+        <TextView
+            android:id="@+id/text_mesa1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textSize="22dp"
+            android:background="@color/green"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/mesa_3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="130dp"
+        android:backgroundTint="@color/green"
+        app:cardCornerRadius="11dp"
+        app:layout_constraintTop_toTopOf="@id/mapa_arriba"
+        app:layout_constraintStart_toStartOf="@id/mapa_arriba"
+        app:layout_constraintEnd_toEndOf="@id/guideline_centro_vertical"
+        app:layout_constraintBottom_toBottomOf="@id/mapa_arriba">
+
+        <TextView
+            android:id="@+id/text_mesa3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="3"
+            android:textSize="20dp"/>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/layout_superior"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_blue"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <Button
+            android:id="@+id/button_backButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:src="@drawable/circle_white"
+            android:text="@string/back_button"
+            android:contentDescription="@string/back_button"/>
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/mesa_4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="80dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="80dp"
+        android:backgroundTint="@color/green"
+        app:cardCornerRadius="11dp"
+        app:layout_constraintTop_toTopOf="@id/mapa_arriba"
+        app:layout_constraintEnd_toEndOf="@id/mapa_arriba"
+        app:layout_constraintStart_toStartOf="@id/guideline_centro_vertical"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_centro_horizontal">
+
+        <TextView
+            android:id="@+id/texto_mesa4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="4"
+            android:textSize="22dp"
+            android:gravity="center"
+            android:textColor="@color/black">
+
+        </TextView>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/mesa_5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="100dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/green"
+        app:cardCornerRadius="11dp"
+        app:layout_constraintTop_toTopOf="@id/mapa_arriba"
+        app:layout_constraintStart_toStartOf="@id/mapa_arriba"
+        app:layout_constraintEnd_toEndOf="@id/guideline_centro_vertical"
+        app:layout_constraintBottom_toBottomOf="@id/mapa_arriba">
+
+        <TextView
+            android:id="@+id/texto_mesa5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="5"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            android:gravity="center">
+
+        </TextView>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/mesa_6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="130dp"
+        android:backgroundTint="@color/green"
+        app:cardCornerRadius="11dp"
+        app:layout_constraintTop_toTopOf="@id/mapa_arriba"
+        app:layout_constraintStart_toStartOf="@id/mapa_arriba"
+        app:layout_constraintEnd_toEndOf="@id/guideline_centro_vertical"
+        app:layout_constraintBottom_toBottomOf="@id/mapa_arriba">
+
+        <TextView
+            android:id="@+id/text_mesa6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="6"
+            android:textSize="22dp">
+
+        </TextView>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

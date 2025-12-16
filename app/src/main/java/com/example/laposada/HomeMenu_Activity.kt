@@ -3,6 +3,8 @@ package com.example.laposada
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -36,7 +38,18 @@ class HomeMenu_Activity : AppCompatActivity() {
 
         irBack()
         setupListeners()
+
+        // Referencia al botón
+        val botonMesas = findViewById<Button>(R.id.boton_mesas)
+
+        // Configurar el OnClickListener para el botón
+        botonMesas.setOnClickListener {
+            // Crear un Intent para redirigir a otra actividad (ejemplo: Selection_Of_Tables)
+            val intent = Intent(this, Selection_Of_Tables::class.java) // Cambia a la actividad de destino
+            startActivity(intent)
+        }
     }
+
 
     fun irBack() {
         binding.buttonBackButton.setOnClickListener {
@@ -52,5 +65,7 @@ class HomeMenu_Activity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+
 
 }

@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LaPosada">
+        <activity
+            android:name=".reserve_selection"
+            android:exported="false" />
         <activity
             android:name=".DetailFoodActivity"
             android:exported="false" />
@@ -31,6 +34,18 @@
             android:exported="false" />
         <activity
             android:name=".FoodMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mesa_hex_1"
+            android:exported="false" />
+        <activity
+            android:name=".Map_Tables"
+            android:exported="false" />
+        <activity
+            android:name=".Selection_Of_Tables"
+            android:exported="false" />
+        <activity
+            android:name=".SelectionOfTables"
             android:exported="false" />
         <activity
             android:name=".HomeMenu_Activity"

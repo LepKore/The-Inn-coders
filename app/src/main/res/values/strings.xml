@@ -17,5 +17,9 @@
     <string name="reservas_title">RESERVAS</string>
     <string name="food_title">COMIDA</string>
     <string name="games_title">JUEGOS</string>
+    <string name="back_button" />
+    <string name="Map_button">map_Button</string>
+    <string name="Ver_mapa">Ver mapa</string>
+    <string name="mesa_1">Mesa #1</string>
 
 </resources>

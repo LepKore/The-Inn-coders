@@ -61,46 +61,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guideLine_middle"
         app:cardCornerRadius="30dp"
-        app:layout_constraintVertical_bias="0.15"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@color/green"
-            android:weightSum="100"
-            >
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="75"
-                app:cardCornerRadius="30dp"
-                android:layout_margin="10dp"
-                >
+        app:layout_constraintVertical_bias="0.15">
 
-                <LinearLayout
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/green"
+                android:weightSum="100">
+
+
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:background="@color/pastel_green"
-                    >
-                    <ImageView
+                    android:layout_height="0dp"
+                    android:layout_weight="75"
+                    app:cardCornerRadius="30dp"
+                    android:layout_margin="10dp">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/table"
-                        android:padding="15dp"
-                        />
-                </LinearLayout>
+                        android:orientation="vertical"
+                        android:background="@color/pastel_green">
 
-            </androidx.cardview.widget.CardView>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="25"
-                android:text="@string/tables_title"
-                android:gravity="center|top"
-                android:textSize="25sp"
-                />
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/table"
+                            android:padding="15dp"/>
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/boton_mesas"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="25"
+                    android:text="@string/tables_title"
+                    android:gravity="center|top"
+                    android:textSize="25sp"/>
+
+
 
         </LinearLayout>
 
