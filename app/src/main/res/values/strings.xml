@@ -17,5 +17,9 @@
     <string name="reservas_title">RESERVAS</string>
     <string name="food_title">COMIDA</string>
     <string name="games_title">JUEGOS</string>
+    <string name="logout_title">Cerrar Sesion</string>
+    <string name="priceTitle">Precio</string>
+    <string name="tiposTitle">Tipos</string>
+    <string name="DeleteOptionFoodTitle">Seleccione comida a eliminar</string>
 
 </resources>

@@ -15,6 +15,7 @@ class EditMenuOptionsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         binding = ActivityEditMenuOptionsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -46,5 +47,11 @@ class EditMenuOptionsActivity : AppCompatActivity() {
             val intent = Intent(this, DeleteFoodActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent()
+        setResult(RESULT_OK, intent)
+        super.onBackPressed()
     }
 }
