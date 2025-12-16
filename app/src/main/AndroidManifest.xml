@@ -48,16 +48,10 @@
             android:name=".FoodMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".mesa_hex_1"
-            android:exported="false" />
-        <activity
             android:name=".Map_Tables"
             android:exported="false" />
         <activity
             android:name=".Selection_Of_Tables"
-            android:exported="false" />
-        <activity
-            android:name=".SelectionOfTables"
             android:exported="false" />
         <activity
             android:name=".HomeMenu_Activity"

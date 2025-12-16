@@ -107,7 +107,7 @@ class FoodMenuActivity : AppCompatActivity() {
     }
     private fun openFoodDetail(food: FoodDataClass) {
         val intent = Intent(context, FoodDescriptionActivity::class.java)
-        intent.putExtra(FOOD_ID, food.id)  // solo pasamos el ID por ahora
+        intent.putExtra(FOOD_ID, food.id)
         startActivity(intent)
     }
 
