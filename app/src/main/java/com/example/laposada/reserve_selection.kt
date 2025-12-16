@@ -18,10 +18,8 @@ class reserve_selection : AppCompatActivity() {
             insets
         }
 
-        // Obtener el número de mesa desde el Intent
         val mesaNumero = intent.getStringExtra("mesaNumero")
 
-        // Asignar el número de mesa al TextView
         val mesaTitle: TextView = findViewById(R.id.titulo_de_mesa)
         mesaTitle.text = mesaNumero // Se actualizará con el número de la mesa seleccionada
     }
