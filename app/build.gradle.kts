@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-
-    // GOOGLE SERVICES
+    kotlin("plugin.serialization") version "1.9.0"
+    id("com.google.devtools.ksp")
     id("com.google.gms.google-services")
 }
 
@@ -49,13 +49,16 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.material3)
-    implementation("com.google.android.material:material:1.x.x")
 
-    // GOOGLE SERVICES FIREBASE
-    implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
-    // FIREBASE AUTH
-    implementation("com.google.firebase:firebase-auth")
+    //Implementacion de Serializacion paso 2
+    implementation(libs.kotlinx.serialization.json)
+    implementation("androidx.room:room-runtime:2.8.3")
+    implementation("androidx.room:room-ktx:2.8.3")
+    ksp("androidx.room:room-compiler:2.8.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+
+    implementation(platform("com.google.firebase:firebase-bom:33.2.0"))
+    implementation("com.google.firebase:firebase-auth-ktx")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -29,10 +29,10 @@
         <Button
             android:id="@+id/button_backButton"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
 
-            android:backgroundTint="@color/red_dark"
-            android:text="Cerrar Sesion"
+            android:backgroundTint="@color/red"
+            android:text="@string/logout_title"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
