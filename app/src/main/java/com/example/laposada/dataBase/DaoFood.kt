@@ -10,7 +10,7 @@ import com.example.laposada.dataClass.FoodDataClass
 @Dao
 interface DaoFood {
     @Query("SELECT * FROM fooddataclass")
-    fun getAll(): List<FoodDataClass>
+    suspend fun getAll(): List<FoodDataClass>
 
     @Insert(onConflict = OnConflictStrategy.Companion.IGNORE)
     suspend fun insertAll(foodList: List<FoodDataClass>)
@@ -23,4 +23,8 @@ interface DaoFood {
 
     @Query("DELETE FROM fooddataclass")
     suspend fun deleteAll()
+
+    @Insert
+    suspend fun insert(food: FoodDataClass)
+
 }

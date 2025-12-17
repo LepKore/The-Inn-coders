@@ -1,5 +1,7 @@
 package com.example.laposada
 
+import android.R.attr.data
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +19,7 @@ import com.example.laposada.databinding.ActivityFoodDescriptionBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.File
 
 class FoodDescriptionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFoodDescriptionBinding
@@ -48,7 +51,9 @@ class FoodDescriptionActivity : AppCompatActivity() {
             val foodId = intent.getIntExtra(FoodMenuActivity.FOOD_ID, -1)
             val food = foodList.find { it.id == foodId }
             food?.let { f ->
-                binding.layoutImageFood.setBackgroundResource(R.drawable.papas_fritas)
+                val imageFile = File(binding.root.context.filesDir, f.imagen)
+                binding.layoutImageFood.background =
+                    Drawable.createFromPath(imageFile.path)
                 binding.textViewFoodName.text = f.nombre
                 binding.textViewPrice.text = "Bs. " + f.precio.toString()
                 binding.textViewDescriptionFood.text = f.descripcion
