@@ -18,7 +18,7 @@ class GameAdapter(private val onClick: (GameDataClass) -> Unit) : RecyclerView.A
     inner class GameViewHolder(val binding: ItemGameBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(game: GameDataClass) {
             binding.textViewGameName.text = game.nombre
-            binding.imageViewGame.setImageResource(game.imagen)
+
             binding.root.setOnClickListener {
                 onClick(game)
             }

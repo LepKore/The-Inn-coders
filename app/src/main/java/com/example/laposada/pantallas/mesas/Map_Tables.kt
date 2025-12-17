@@ -1,34 +1,27 @@
-package com.example.laposada
+package com.example.laposada.pantallas.mesas
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.laposada.databinding.ActivityEditFoodBinding
+import com.example.laposada.R
 
-class EditFoodActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityEditFoodBinding
-
+class Map_Tables : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityEditFoodBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+        setContentView(R.layout.activity_map_tables)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        IrBack()
-    }
-
-    fun IrBack() {
-        binding.buttonBack.setOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
+        val backButton: Button = findViewById(R.id.button_backButton)
+        backButton.setOnClickListener {
+            onBackPressed()  // Esto redirige a la actividad anterior
         }
     }
 }

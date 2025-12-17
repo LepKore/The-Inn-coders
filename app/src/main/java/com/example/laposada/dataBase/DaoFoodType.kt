@@ -29,4 +29,7 @@ interface DaoFoodType {
 
     @Query("SELECT nombre FROM foodtypedataclass")
     suspend fun getNombres(): List<String>
+
+    @Query("SELECT nombre FROM FoodTypeDataClass WHERE id = :idFood")
+    suspend fun selectById(idFood: Int): String
 }

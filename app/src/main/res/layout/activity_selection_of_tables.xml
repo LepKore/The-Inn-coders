@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Selection_Of_Tables"
+    tools:context=".pantallas.mesas.Selection_Of_Tables"
     android:background="@drawable/fondo_default">
 
     <LinearLayout

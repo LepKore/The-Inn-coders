@@ -1,4 +1,5 @@
-package com.example.laposada
+package com.example.laposada.pantallas.menuComida
+
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -7,9 +8,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
+import com.example.laposada.R
 import com.example.laposada.adapters.FoodSpinnerAdapter
 import com.example.laposada.dataBase.DaoFood
-import com.example.laposada.dataBase.FoodDatabase
+import com.example.laposada.dataBase.GeneralDataBase
 import com.example.laposada.dataClass.FoodDataClass
 import com.example.laposada.databinding.ActivityDeleteFoodBinding
 import kotlinx.coroutines.Dispatchers
@@ -32,10 +34,13 @@ class DeleteFoodActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityDeleteFoodBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val foodDatabase: FoodDatabase = Room.databaseBuilder(
-            context, FoodDatabase::class.java, "FOOD_DATABASE_NAME"
-        ).build()
-        daoFood = foodDatabase.DaoFood()
+        val database: GeneralDataBase = Room.databaseBuilder(
+            context, GeneralDataBase::class.java,
+            FoodMenuActivity.Companion.DATABASE_NAME
+        )
+//            .fallbackToDestructiveMigration()
+            .build()
+        daoFood = database.DaoFood()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

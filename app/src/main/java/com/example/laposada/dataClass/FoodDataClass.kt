@@ -11,5 +11,5 @@ data class FoodDataClass(
     @ColumnInfo(name = "precio")        val precio: Double,
     @ColumnInfo(name = "imagen")        val imagen: String,
     @ColumnInfo(name = "descripcion")   val descripcion: String,
-    @ColumnInfo(name = "tipos")         val tipos: List<String>
+    @ColumnInfo(name = "tipos")         val tipos: List<Int>
 )

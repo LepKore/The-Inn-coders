@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo_default"
-    tools:context=".AddFoodActivity">
+    tools:context=".pantallas.menuComida.AddFoodActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topBar"
@@ -62,7 +62,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <ImageButton
+            <View
                 android:id="@+id/imagePlaceHolder"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
@@ -125,7 +125,10 @@
                 android:textColorHint="@color/black"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@id/labelPrice" />
+                app:layout_constraintTop_toBottomOf="@id/labelPrice"
+                android:inputType="numberDecimal"
+                />
+
 
             <TextView
                 android:id="@+id/labelType"
@@ -152,17 +155,6 @@
                 app:layout_constraintTop_toBottomOf="@id/labelType"
                 android:gravity="center_vertical"
                 />
-
-
-            <TextView
-
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
-                android:background="@color/gray_500"
-                app:layout_constraintTop_toBottomOf="@id/labelType" />
 
             <TextView
                 android:id="@+id/labelDescripcion"

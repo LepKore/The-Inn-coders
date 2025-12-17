@@ -1,7 +1,6 @@
-package com.example.laposada
+package com.example.laposada.pantallas.menuJuegos
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -11,29 +10,32 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.room.Room
-import com.example.laposada.adapters.FoodAdapter
-import com.example.laposada.dataBase.DaoFood
-import com.example.laposada.dataBase.FoodDatabase
+import com.example.laposada.R
+import com.example.laposada.adapters.GameAdapter
+import com.example.laposada.dataBase.DaoGame
+import com.example.laposada.dataBase.GeneralDataBase
 import com.example.laposada.dataClass.FoodDataClass
-import com.example.laposada.databinding.ActivityFoodMenuBinding
+import com.example.laposada.dataClass.GameDataClass
+import com.example.laposada.databinding.ActivityGamesMenuBinding
+import com.example.laposada.pantallas.menuComida.FoodDescriptionActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class FoodMenuActivity : AppCompatActivity() {
+class GamesMenuActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityFoodMenuBinding
-    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var binding: ActivityGamesMenuBinding
     private val context = this
-    private lateinit var daoFood: DaoFood
-    private val adapter: FoodAdapter by lazy { FoodAdapter {food ->
-        openFoodDetail(food)
-    } }
+    private lateinit var daoGame: DaoGame
+    private val adapter: GameAdapter by lazy {
+        GameAdapter { game ->
+            // TODO: implementar el detalle
+        }
+    }
 
     companion object {
-        val TAG_SHARED_PREFERENCES = "TAG_SHARED_PREFERENCES"
-        val FOOD_DATABASE_NAME = "FOOD_DATABASE_NAME"
-        val FOOD_ID = "FOOD_ID"
+        val GAME_DATABASE_NAME = "GAME_DATABASE_NAME"
+        val GAME_ID = "GAME_ID"
     }
 
     private val launcherEditMenu = registerForActivityResult(
@@ -41,10 +43,10 @@ class FoodMenuActivity : AppCompatActivity() {
     ) { result ->
         if (result.resultCode == RESULT_OK) {
             lifecycleScope.launch {
-                val food = withContext(Dispatchers.IO) {
-                    getFoodList()
+                val game = withContext(Dispatchers.IO) {
+                    getGameList()
                 }
-                adapter.addDataCards(food)
+                adapter.addDataCards(game)
             }
         }
     }
@@ -52,18 +54,15 @@ class FoodMenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityFoodMenuBinding.inflate(layoutInflater)
+        binding = ActivityGamesMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        sharedPreferences = context.getSharedPreferences(
-            TAG_SHARED_PREFERENCES,MODE_PRIVATE
-        )
 
-        val foodDB = Room.databaseBuilder(
+        val dataBase = Room.databaseBuilder(
             context,
-            FoodDatabase::class.java,
-            FOOD_DATABASE_NAME
+            GeneralDataBase::class.java,
+            GAME_DATABASE_NAME
         ).build()
-        daoFood = foodDB.DaoFood()
+        daoGame = dataBase.DaoGame()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -71,19 +70,17 @@ class FoodMenuActivity : AppCompatActivity() {
             insets
         }
 
-
         setupRecyclerView()
         setupListeners()
     }
-
     override fun onResume() {
         super.onResume()
-        drawFood()
+        drawGames()
     }
 
     private fun setupRecyclerView() {
-        binding.recyclerViewFood.layoutManager = GridLayoutManager(this, 2)
-        binding.recyclerViewFood.adapter = adapter
+        binding.recyclerViewGames.layoutManager = GridLayoutManager(this, 2)
+        binding.recyclerViewGames.adapter = adapter
     }
 
     private fun setupListeners() {
@@ -91,28 +88,25 @@ class FoodMenuActivity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
         binding.buttonEdit.setOnClickListener {
-            val editFoodIntent = Intent(context, EditMenuOptionsActivity::class.java)
-            launcherEditMenu.launch(editFoodIntent)
+             // TODO: Implement Edit Menu for games
         }
-
     }
-    private fun openFoodDetail(food: FoodDataClass) {
+
+    private fun openGameDetail(game: GameDataClass) {
         val intent = Intent(context, FoodDescriptionActivity::class.java)
-        intent.putExtra(FOOD_ID, food.id)
+        intent.putExtra(GAME_ID, game.id)
         startActivity(intent)
     }
 
-    private suspend fun getFoodList():List<FoodDataClass>  {
-        val food = withContext(Dispatchers.IO) {daoFood.getAll()}
-        return food
+    private suspend fun getGameList():List<GameDataClass>  {
+        val game = withContext(Dispatchers.IO) { daoGame.getAll() }
+        return game
     }
 
-    private fun drawFood() {
+    private fun drawGames() {
         lifecycleScope.launch {
-            val food = getFoodList()
-            adapter.addDataCards(food)
+            val game = getGameList()
+            adapter.addDataCards(game)
         }
     }
-
-
 }

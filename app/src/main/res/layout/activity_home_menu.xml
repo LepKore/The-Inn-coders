@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeMenu_Activity"
+    tools:context=".pantallas.startMenu.HomeMenu_Activity"
     android:background="@drawable/fondo_default"
     >
 
@@ -38,6 +38,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:textColor="@color/black"
             android:textSize="20sp"
+            android:layout_marginStart="10dp"
             />
 
 
@@ -92,12 +93,6 @@
                             android:padding="15dp"/>
 
                     </LinearLayout>
-
-                    <Button
-                        android:id="@+id/boton_mesas"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"/>
 
                 </androidx.cardview.widget.CardView>
 

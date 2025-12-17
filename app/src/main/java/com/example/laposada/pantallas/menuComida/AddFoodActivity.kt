@@ -1,5 +1,6 @@
-package com.example.laposada
+package com.example.laposada.pantallas.menuComida
 
+import android.app.AlertDialog
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
@@ -11,11 +12,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
-import com.example.laposada.FoodMenuActivity.Companion.FOOD_DATABASE_NAME
+import com.example.laposada.R
 import com.example.laposada.dataBase.DaoFood
 import com.example.laposada.dataBase.DaoFoodType
-import com.example.laposada.dataBase.FoodDatabase
-import com.example.laposada.dataBase.FoodTypeDataBase
+import com.example.laposada.dataBase.GeneralDataBase
 import com.example.laposada.dataClass.FoodDataClass
 import com.example.laposada.dataClass.FoodTypeDataClass
 import com.example.laposada.databinding.ActivityAddFoodBinding
@@ -33,24 +33,23 @@ class AddFoodActivity : AppCompatActivity() {
 
     private val pickImageLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-            if (uri != null) {
-                val imageId = saveImageToInternalStorage(uri)
+            uri?.let {
+                val imageId = saveImageToInternalStorage(it)
                 currentImageId = imageId
                 val file = File(filesDir, imageId)
-                binding.imagePlaceHolder.setImageURI(file.toUri())
+                binding.imagePlaceHolder.background = null
+                binding.imagePlaceHolder.setBackgroundDrawable(
+                    android.graphics.drawable.Drawable.createFromPath(file.absolutePath)
+                )
             }
         }
 
-    private lateinit var tipos: List<String>
-    private val selectedTipos = mutableListOf<String>()
+    private lateinit var tipos: List<FoodTypeDataClass>
+    private val selectedTipos = mutableListOf<Int>()
 
     private val context = this
     lateinit var daoTipos: DaoFoodType
     lateinit var daoFood: DaoFood
-
-    companion object {
-        val FOOD_TYPE_DATABASE_NAME = "FOOD_TYPE_DATABASE_NAME"
-    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,19 +58,15 @@ class AddFoodActivity : AppCompatActivity() {
         binding = ActivityAddFoodBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val typeDB = Room.databaseBuilder(
+        val dataBase = Room.databaseBuilder(
             context,
-            FoodTypeDataBase::class.java,
-            FOOD_TYPE_DATABASE_NAME
-        ).build()
-        daoTipos = typeDB.DaoFoodType()
-
-        val foodDB = Room.databaseBuilder(
-            context,
-            FoodDatabase::class.java,
-            FOOD_DATABASE_NAME
-        ).build()
-        daoFood = foodDB.DaoFood()
+            GeneralDataBase::class.java,
+            FoodMenuActivity.Companion.DATABASE_NAME
+        )
+//            .fallbackToDestructiveMigration()
+            .build()
+        daoTipos    = dataBase.DaoFoodType()
+        daoFood     = dataBase.DaoFood()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -79,28 +74,8 @@ class AddFoodActivity : AppCompatActivity() {
             insets
         }
 
-        insertTipos()
-
         loadTipos()
         setupListeners()
-    }
-    fun insertTipos() {
-        val lista = listOf<FoodTypeDataClass>(
-            FoodTypeDataClass(0, "Comida"),
-            FoodTypeDataClass(0, "Bebida"),
-            FoodTypeDataClass(0, "Postre"),
-            FoodTypeDataClass(0, "Caliente"),
-            FoodTypeDataClass(0, "Frio"),
-            FoodTypeDataClass(0, "Frito"),
-            FoodTypeDataClass(0, "Congelado")
-        )
-        lifecycleScope.launch {
-            withContext(Dispatchers.IO) {
-                daoTipos.deleteAll()
-//                daoTipos.insertAll(lista)
-            }
-
-        }
     }
 
      fun setupListeners() {
@@ -109,30 +84,30 @@ class AddFoodActivity : AppCompatActivity() {
          }
 
          binding.Type.setOnClickListener {
-             val selectedItems = BooleanArray(tipos.size) {index ->
-                 selectedTipos.contains(tipos[index])
-
+             val names = tipos.map { it.nombre }.toTypedArray()
+             val checkedItems = BooleanArray(tipos.size) { index ->
+                 selectedTipos.contains(tipos[index].id)
              }
 
-             val builder = android.app.AlertDialog.Builder(context)
-             builder.setTitle("Selecciones los tipos")
-             builder.setMultiChoiceItems(tipos.toTypedArray(), selectedItems) {
-                 _, which, isChecked ->
-                if (isChecked) {
-                    selectedTipos.add(tipos[which])
-                } else {
-                    selectedTipos.remove(tipos[which])
-
-                }
-             }
-             builder.setPositiveButton("Aceptar") {dialog, _ ->
-                 binding.Type.text = if (selectedTipos.isEmpty()) "Seleccione los tipos" else selectedTipos.joinToString(", ")
-                 dialog.dismiss()
-             }
-             builder.setNegativeButton("Cancelar") { dialog, _ ->
-                 dialog.dismiss()
-             }
-             builder.create().show()
+             androidx.appcompat.app.AlertDialog.Builder(context)
+                 .setTitle("Seleccione los tipos")
+                 .setMultiChoiceItems(names, checkedItems) { _, which, isChecked ->
+                     val tipoId = tipos[which].id
+                     if (isChecked) selectedTipos.add(tipoId)
+                     else selectedTipos.remove(tipoId)
+                 }
+                 .setPositiveButton("Aceptar") { dialog, _ ->
+                     lifecycleScope.launch {
+                         val nombresTipos = withContext(Dispatchers.IO) {
+                             selectedTipos.mapNotNull { id -> daoTipos.selectById(id) }
+                         }
+                         binding.Type.text = if (nombresTipos.isEmpty()) "Seleccione los tipos"
+                         else nombresTipos.joinToString(", ")
+                         dialog.dismiss()
+                     }
+                 }
+                 .setNegativeButton("Cancelar") { dialog, _ -> dialog.dismiss() }
+                 .show()
          }
 
          binding.imagePlaceHolder.setOnClickListener {
@@ -159,7 +134,7 @@ class AddFoodActivity : AppCompatActivity() {
             val food = FoodDataClass(0, nombre, precio.toDouble(), imagen, descripcion, tipos)
             addFood(food)
             Toast.makeText(context, "Comida añadida", Toast.LENGTH_SHORT).show()
-
+            onBackPressedDispatcher.onBackPressed()
         }
     }
 
@@ -180,7 +155,7 @@ class AddFoodActivity : AppCompatActivity() {
     private fun loadTipos() {
         lifecycleScope.launch {
             tipos = withContext(Dispatchers.IO) {
-                daoTipos.getNombres()
+                daoTipos.getAll()
             }
         }
     }

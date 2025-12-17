@@ -3,13 +3,13 @@ package com.example.laposada.converters
 import androidx.room.TypeConverter
 
 class Converters {
-    @TypeConverter
-    fun fromList(value: List<String>): String {
-        return value.joinToString(",")
-    }
 
     @TypeConverter
-    fun toList(value: String): List<String> {
-        return value.split(",")
-    }
+    fun fromListInt(value: List<Int>): String =
+        value.joinToString(",")
+
+    @TypeConverter
+    fun toListInt(value: String): List<Int> =
+        if (value.isEmpty()) emptyList()
+        else value.split(",").map { it.toInt() }
 }

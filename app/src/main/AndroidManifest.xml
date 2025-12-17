@@ -15,28 +15,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LaPosada">
         <activity
-            android:name=".GamesMenuActivity"
+            android:name=".pantallas.menuJuegos.GamesMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".reserve_selection"
+            android:name=".pantallas.mesas.reserve_selection"
             android:exported="false" />
         <activity
             android:name=".DetailFoodActivity"
             android:exported="false" />
         <activity
-            android:name=".EditFoodActivity"
+            android:name=".pantallas.menuComida.EditFoodActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
             android:exported="false" />
         <activity
-            android:name=".AddFoodActivity"
+            android:name=".pantallas.menuComida.AddFoodActivity"
             android:exported="false" />
         <activity
-            android:name=".DeleteFoodActivity"
+            android:name=".pantallas.menuComida.DeleteFoodActivity"
             android:exported="false" />
         <activity
-            android:name=".EditMenuOptionsActivity"
+            android:name=".pantallas.menuComida.EditMenuOptionsActivity"
             android:exported="false" />
         <activity
-            android:name=".StartMenu_activity"
+            android:name=".pantallas.startMenu.StartMenu_activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,31 +46,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FoodDescriptionActivity"
+            android:name=".pantallas.menuComida.FoodDescriptionActivity"
             android:exported="false" />
         <activity
-            android:name=".FoodMenuActivity"
+            android:name=".pantallas.menuComida.FoodMenuActivity"
             android:exported="false" />
         <activity
             android:name=".mesa_hex_1"
             android:exported="false" />
         <activity
-            android:name=".Map_Tables"
+            android:name=".pantallas.mesas.Map_Tables"
             android:exported="false" />
         <activity
-            android:name=".Selection_Of_Tables"
+            android:name=".pantallas.mesas.Selection_Of_Tables"
             android:exported="false" />
         <activity
             android:name=".SelectionOfTables"
             android:exported="false" />
         <activity
-            android:name=".HomeMenu_Activity"
+            android:name=".pantallas.startMenu.HomeMenu_Activity"
             android:exported="false" />
         <activity
-            android:name=".Register_activity"
+            android:name=".pantallas.startMenu.Register_activity"
             android:exported="false" />
         <activity
-            android:name=".Login_activity"
+            android:name=".pantallas.startMenu.Login_activity"
             android:exported="false" />
 
         <activity
