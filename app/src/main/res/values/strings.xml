@@ -20,8 +20,30 @@
     <string name="logout_title">Cerrar Sesion</string>
     <string name="priceTitle">Precio</string>
     <string name="tiposTitle">Tipos</string>
+    
     <string name="DeleteOptionFoodTitle">Seleccione comida a eliminar</string>
     <string name="DeleteOptionGameTitle">Seleccione juego a eliminar</string>
+    
+    <string name="add_game_title">Añadir juego</string>
+    <string name="edit_game_title">Editar juego</string>
+    <string name="delete_game_title">Eliminar juego</string>
+    
+    <string name="select_image">Seleccionar imagen</string>
+    <string name="label_name">Nombre</string>
+    <string name="hint_name">Ingrese el nombre</string>
+    <string name="select_types">Seleccione los tipos</string>
+    <string name="label_description">Descripcion</string>
+    <string name="hint_description">Ingrese una descripcion</string>
+    
+    <string name="button_add">Añadir</string>
+    <string name="button_save">Guardar</string>
+    <string name="button_delete">Eliminar</string>
+    
+    <string name="error_empty_fields">Por favor complete todos los campos</string>
+    <string name="game_added_success">Juego añadido correctamente</string>
+    <string name="game_deleted_success">Juego eliminado</string>
+    <string name="no_games_found">No hay juegos</string>
+
     <string name="back_button" />
     <string name="Map_button">map_Button</string>
     <string name="Ver_mapa">Ver mapa</string>
