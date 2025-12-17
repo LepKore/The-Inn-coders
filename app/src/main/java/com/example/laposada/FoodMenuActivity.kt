@@ -19,7 +19,6 @@ import com.example.laposada.databinding.ActivityFoodMenuBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlin.math.log
 
 class FoodMenuActivity : AppCompatActivity() {
 
@@ -59,18 +58,20 @@ class FoodMenuActivity : AppCompatActivity() {
             TAG_SHARED_PREFERENCES,MODE_PRIVATE
         )
 
-        val db = Room.databaseBuilder(
+        val foodDB = Room.databaseBuilder(
             context,
             FoodDatabase::class.java,
             FOOD_DATABASE_NAME
         ).build()
-        daoFood = db.DaoFood()
+        daoFood = foodDB.DaoFood()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+
         setupRecyclerView()
         setupListeners()
     }
@@ -99,10 +100,6 @@ class FoodMenuActivity : AppCompatActivity() {
         val intent = Intent(context, FoodDescriptionActivity::class.java)
         intent.putExtra(FOOD_ID, food.id)
         startActivity(intent)
-    }
-
-    private suspend fun guardarDatosBD() {
-
     }
 
     private suspend fun getFoodList():List<FoodDataClass>  {
