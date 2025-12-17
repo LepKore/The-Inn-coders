@@ -1,6 +1,7 @@
 package com.example.laposada
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -24,11 +25,12 @@ class GamesMenuActivity : AppCompatActivity() {
     private val context = this
     private lateinit var daoGame: DaoGame
     private val adapter: GameAdapter by lazy { GameAdapter { game ->
-        // TODO: implementar el detalle
+        openGameDetail(game)
     } }
 
     companion object {
         val GAME_DATABASE_NAME = "GAME_DATABASE_NAME"
+        val GAME_ID = "GAME_ID"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +42,10 @@ class GamesMenuActivity : AppCompatActivity() {
         val gameDatabase = Room.databaseBuilder(
             context, GameDatabase::class.java, GAME_DATABASE_NAME
         )
-        daoGame = gameDatabase.build().DaoGame()
+        .fallbackToDestructiveMigration()
+        .build()
+        
+        daoGame = gameDatabase.DaoGame()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -48,16 +53,20 @@ class GamesMenuActivity : AppCompatActivity() {
             insets
         }
 
-        lifecycleScope.launch {
-            guardarDatosBD()
-        }
-
         setupRecyclerView()
         setupListeners()
 
+        // Wait for DB population before loading data
         lifecycleScope.launch {
-            val games = withContext(Dispatchers.IO) { obtenerDatosEnBaseDeDatos() }
-            adapter.addDataCards(games)
+            try {
+                // First ensure data is inserted
+                guardarDatosBD()
+                // Then load the data
+                val games = withContext(Dispatchers.IO) { obtenerDatosEnBaseDeDatos() }
+                adapter.addDataCards(games)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 
@@ -74,19 +83,57 @@ class GamesMenuActivity : AppCompatActivity() {
              // TODO: Implement Edit Menu for games
         }
     }
+    
+    private fun openGameDetail(game: GameDataClass) {
+        val intent = Intent(context, GameDescriptionActivity::class.java)
+        intent.putExtra(GAME_ID, game.id)
+        startActivity(intent)
+    }
 
     private suspend fun guardarDatosBD() {
         val gameList = listOf(
-            GameDataClass(nombre = "SUSHI GO", imagen = R.drawable.sushigo2),
-            GameDataClass(nombre = "SABOTEUR", imagen = R.drawable.saboteur2),
-            GameDataClass(nombre = "TANXI", imagen = R.drawable.tanxi2),
-            GameDataClass(nombre = "COFFEE RUSH", imagen = R.drawable.coffer2),
-            GameDataClass(nombre = "SOVIET KITCHEN", imagen = R.drawable.soviet2)
+            GameDataClass(
+                nombre = "SUSHI GO",
+                imagen1 = R.drawable.sushigo2,
+                imagen2 = R.drawable.sushigo1,
+                descripcion = "Juega con tus amigos una divertida ronda armando variados platos japoneses.\nJuega combinaciones y gana mas puntos que los demas para ganar.",
+                categorias = listOf("Cartas", "Corto")
+            ),
+            GameDataClass(
+                nombre = "SABOTEUR",
+                imagen1 = R.drawable.saboteur2,
+                imagen2 = R.drawable.saboteur1,
+                descripcion = "Descripción de Saboteur...",
+                categorias = listOf("Estrategia", "Roles Ocultos")
+            ),
+            GameDataClass(
+                nombre = "TANXI",
+                imagen1 = R.drawable.tanxi2,
+                imagen2 = R.drawable.tanxi1,
+                descripcion = "Descripción de Tanxi...",
+                categorias = listOf("Estrategia", "Tablero")
+            ),
+            GameDataClass(
+                nombre = "COFFEE RUSH",
+                imagen1 = R.drawable.coffer2,
+                imagen2 = R.drawable.coffer1,
+                descripcion = "Descripción de Coffee Rush...",
+                categorias = listOf("Estrategia", "Velocidad")
+            ),
+            GameDataClass(
+                nombre = "SOVIET KITCHEN",
+                imagen1 = R.drawable.soviet2,
+                imagen2 = R.drawable.soviet1,
+                descripcion = "Descripción de Soviet Kitchen...",
+                categorias = listOf("Cooperativo", "Cartas")
+            )
         )
 
-        val currentGames = daoGame.getAll()
-        if (currentGames.isEmpty()) {
-            daoGame.insertAll(gameList)
+        withContext(Dispatchers.IO) {
+            val currentGames = daoGame.getAll()
+            if (currentGames.isEmpty()) {
+                daoGame.insertAll(gameList)
+            }
         }
     }
 
