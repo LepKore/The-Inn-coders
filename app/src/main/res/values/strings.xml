@@ -21,6 +21,7 @@
     <string name="priceTitle">Precio</string>
     <string name="tiposTitle">Tipos</string>
     <string name="DeleteOptionFoodTitle">Seleccione comida a eliminar</string>
+    <string name="DeleteOptionGameTitle">Seleccione juego a eliminar</string>
     <string name="back_button" />
     <string name="Map_button">map_Button</string>
     <string name="Ver_mapa">Ver mapa</string>

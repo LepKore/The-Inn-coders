@@ -15,6 +15,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LaPosada">
         <activity
+            android:name=".EditGameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddGameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DeleteGameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditGameOptionsActivity"
+            android:exported="false" />
+        <activity
             android:name=".GameDescriptionActivity"
             android:exported="false" />
         <activity
@@ -22,9 +34,6 @@
             android:exported="false" />
         <activity
             android:name=".reserve_selection"
-            android:exported="false" />
-        <activity
-            android:name=".DetailFoodActivity"
             android:exported="false" />
         <activity
             android:name=".EditFoodActivity"
@@ -54,17 +63,12 @@
             android:name=".FoodMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".mesa_hex_1"
-            android:exported="false" />
-        <activity
             android:name=".Map_Tables"
             android:exported="false" />
         <activity
             android:name=".Selection_Of_Tables"
             android:exported="false" />
-        <activity
-            android:name=".SelectionOfTables"
-            android:exported="false" />
+
         <activity
             android:name=".HomeMenu_Activity"
             android:exported="false" />

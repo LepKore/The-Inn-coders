@@ -13,4 +13,7 @@ interface DaoGame {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(games: List<GameDataClass>)
+
+    @Query("DELETE FROM games WHERE id = :idGame")
+    suspend fun deleteById(idGame: Int)
 }
