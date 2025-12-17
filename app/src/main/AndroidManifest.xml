@@ -21,7 +21,19 @@
             android:name=".pantallas.mesas.reserve_selection"
             android:exported="false" />
         <activity
-            android:name=".DetailFoodActivity"
+            android:name=".DeleteGameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditGameOptionsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GameDescriptionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GamesMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".reserve_selection"
             android:exported="false" />
         <activity
             android:name=".pantallas.menuComida.EditFoodActivity"
@@ -49,10 +61,8 @@
             android:name=".pantallas.menuComida.FoodDescriptionActivity"
             android:exported="false" />
         <activity
+            android:name=".FoodMenuActivity"
             android:name=".pantallas.menuComida.FoodMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".mesa_hex_1"
             android:exported="false" />
         <activity
             android:name=".pantallas.mesas.Map_Tables"
@@ -60,9 +70,7 @@
         <activity
             android:name=".pantallas.mesas.Selection_Of_Tables"
             android:exported="false" />
-        <activity
-            android:name=".SelectionOfTables"
-            android:exported="false" />
+
         <activity
             android:name=".pantallas.startMenu.HomeMenu_Activity"
             android:exported="false" />
