@@ -19,11 +19,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".Reservas_confirmadas"
-            android:exported="false" />
-
-        <activity
-            android:name=".pantallas.menuJuegos.EditGameActivity"
+            android:name=".pantallas.verReservas.Reservas_confirmadas"
             android:exported="false" />
         <activity
             android:name=".reserve_selection"

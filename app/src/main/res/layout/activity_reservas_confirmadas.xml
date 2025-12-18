@@ -6,6 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo_default"
-    tools:context=".Reservas_confirmadas">
+    tools:context=".pantallas.verReservas.Reservas_confirmadas">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,72 +8,69 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.laposada.R
+import com.example.laposada.databinding.ActivitySelectionOfTablesBinding
 import com.example.laposada.reserve_selection
 
 class Selection_Of_Tables : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySelectionOfTablesBinding
+
+    companion object {
+        val ID_MESA = "ID_MESA"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_selection_of_tables)
+
+        binding = ActivitySelectionOfTablesBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        val botonMapa: Button = findViewById(R.id.button_mapButton)
 
-        botonMapa.setOnClickListener {
+
+        binding.buttonMapButton.setOnClickListener {
             val intent = Intent(this, Map_Tables::class.java)
             startActivity(intent)
         }
 
-        val mesa1Button: Button = findViewById(R.id.mesa1)
-        mesa1Button.setOnClickListener {
-            val intent = Intent(this, reserve_selection::class.java)
-            intent.putExtra("mesaNumero", "Mesa #1")
-            startActivity(intent)
+        binding.mesa1.setOnClickListener {
+            abrirReserva(1)
         }
 
-        val mesa2Button: Button = findViewById(R.id.mesa2)
-        mesa2Button.setOnClickListener {
-            val intent = Intent(this, reserve_selection::class.java)
-            intent.putExtra("mesaNumero", "Mesa #2")
-            startActivity(intent)
+        binding.mesa2.setOnClickListener {
+            abrirReserva(2)
         }
 
-        val mesa3Button: Button = findViewById(R.id.mesa3)
-        mesa3Button.setOnClickListener {
-            val intent = Intent(this, reserve_selection::class.java)
-            intent.putExtra("mesaNumero", "Mesa #3")
-            startActivity(intent)
+        binding.mesa3.setOnClickListener {
+            abrirReserva(3)
         }
 
-        val mesa4Button: Button = findViewById(R.id.mesa4)
-        mesa4Button.setOnClickListener {
-            val intent = Intent(this, reserve_selection::class.java)
-            intent.putExtra("mesaNumero", "Mesa #4")
-            startActivity(intent)
+        binding.mesa4.setOnClickListener {
+            abrirReserva(4)
         }
 
-        val mesa5Button: Button = findViewById(R.id.mesa5)
-        mesa5Button.setOnClickListener {
-            val intent = Intent(this, reserve_selection::class.java)
-            intent.putExtra("mesaNumero", "Mesa #5")
-            startActivity(intent)
+        binding.mesa5.setOnClickListener {
+            abrirReserva(5)
         }
 
-        val mesa6Button: Button = findViewById(R.id.mesa6)
-        mesa6Button.setOnClickListener {
-            val intent = Intent(this, reserve_selection::class.java)
-            intent.putExtra("mesaNumero", "Mesa #6")
-            startActivity(intent)
+        binding.mesa6.setOnClickListener {
+            abrirReserva(6)
         }
 
-        val backButton: Button = findViewById(R.id.button_backButton)
-        backButton.setOnClickListener {
-            onBackPressed()
+        binding.buttonBackButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
         }
 
+    }
+    fun abrirReserva(mesa: Int) {
+        val intent = Intent(this, reserve_selection::class.java)
+        intent.putExtra(ID_MESA, mesa)
+        startActivity(intent)
     }
 }

@@ -8,13 +8,15 @@ import com.example.laposada.dataClass.FoodDataClass
 import com.example.laposada.dataClass.FoodTypeDataClass
 import com.example.laposada.dataClass.GameDataClass
 import com.example.laposada.dataClass.GameTypeDataClass
+import com.example.laposada.dataClass.ReservaDataClass
 
 @Database(entities = arrayOf(
     FoodDataClass::class,
     GameDataClass::class,
     FoodTypeDataClass::class,
-    GameTypeDataClass::class
-    ), version = 3)
+    GameTypeDataClass::class,
+    ReservaDataClass::class
+    ), version = 5)
 @TypeConverters(Converters::class)
 abstract class GeneralDataBase: RoomDatabase() {
 
@@ -22,5 +24,6 @@ abstract class GeneralDataBase: RoomDatabase() {
     abstract fun DaoFoodType(): DaoFoodType
     abstract fun DaoGame(): DaoGame
     abstract fun DaoGameType(): DaoGameType
+    abstract fun DaoReservas(): DaoReservas
 
 }

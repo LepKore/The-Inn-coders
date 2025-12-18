@@ -22,6 +22,7 @@ import com.example.laposada.dataBase.DaoGameType
 import com.example.laposada.dataBase.GeneralDataBase
 import com.example.laposada.dataClass.FoodDataClass
 import com.example.laposada.dataClass.FoodTypeDataClass
+import com.example.laposada.dataClass.GameDataClass
 import com.example.laposada.dataClass.GameTypeDataClass
 import com.example.laposada.databinding.ActivityHomeMenuBinding
 import com.example.laposada.pantallas.menuComida.FoodMenuActivity.Companion.DATABASE_NAME
@@ -133,7 +134,38 @@ class HomeMenu_Activity : AppCompatActivity() {
                     GameTypeDataClass(9, "Competencia")
                 )
                 daoTiposGame.insertAll(listag)
+            }
+            if (daoGame.getAll().isEmpty()) {
+                val sushi1 = copyDrawableToInternalStorage(context, R.drawable.sushigo1, "sushigo1.png")
+                val sushi2 = copyDrawableToInternalStorage(context, R.drawable.sushigo2, "sushigo2.png")
+                val sabo1 = copyDrawableToInternalStorage(context, R.drawable.saboteur1, "saboteur1.png")
+                val sabo2 = copyDrawableToInternalStorage(context, R.drawable.saboteur2, "saboteur2.png")
+                val tanxi1 = copyDrawableToInternalStorage(context, R.drawable.tanxi1, "tanxi1.png")
+                val tanxi2 = copyDrawableToInternalStorage(context, R.drawable.tanxi2, "tanxi2.png")
+//                val coffee1 = copyDrawableToInternalStorage(context, R.drawable.coffer1, "coffee1.png")
+//                val coffee2 = copyDrawableToInternalStorage(context, R.drawable.coffer2, "coffee2.png")
+                val soviet1 = copyDrawableToInternalStorage(context, R.drawable.soviet1, "soviet1.png")
+                val soviet2 = copyDrawableToInternalStorage(context, R.drawable.soviet2, "soviet2.png")
 
+
+                val games = listOf(
+                    GameDataClass(1, "Sushi Go", sushi2, sushi1,
+                        "Un juego muy divertido donde tienes que armar tu jugada se sushi. Obten puntos y ganales al resto con tu combinacion.",
+                        listOf(1,5,9)),
+                    GameDataClass(2, "Saboteur", sabo2, sabo1,
+                        "Tu y tus amigos estan en busca del oro en una mina, cooperen para llegar a su objetivo. Pero no se confien, parece que alguien intenta saborearlos."
+                        ,listOf(1, 6, 8)),
+                    GameDataClass(3, "Tanxi", tanxi2, tanxi1,
+                        "Embarcaste en una isla, con el objetivo de ser el ganador. Armate, investiga y quizas pide algunas ayudas a los dioses y tendras una oportunidad."
+                        ,listOf(2, 3, 7, 9)),
+//                    GameDataClass(4, "Coffee Rush", coffee2, coffee1,
+//                        "Invita a tus amigos para ver quien puede ser el mejor dueno de una cafeteria. Prepara los pedidos, y cuidado con que salgan demasiado tarde"
+//                        , listOf(2, 6, 9)),
+                    GameDataClass(4, "Soviet Kitchen", soviet2, soviet1,
+                        "Se creen capaces de hacer cocina sovietica. Bueno, este juego los pondra a prueba en este interesante reto"
+                        , listOf(1, 7, 8))
+                )
+                daoGame.insertAll(games)
             }
         }
 
