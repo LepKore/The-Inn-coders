@@ -30,14 +30,12 @@ class reserve_selection : AppCompatActivity() {
         val spInicio = findViewById<Spinner>(R.id.spinner_hora_inicio)
         val spFin = findViewById<Spinner>(R.id.spinner_hora_fin)
 
-        // 1) Hora inicio: 15:00 a 21:00
         val horasInicio = horasRango(15, 21)
         val adapterInicio = ArrayAdapter(this, android.R.layout.simple_spinner_item, horasInicio).apply {
             setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         }
         spInicio.adapter = adapterInicio
 
-        // 2) Función para actualizar Hora fin según inicio seleccionado
         fun actualizarSpinnerFin() {
             val horaInicioSeleccionada = indiceDeHora(spInicio.selectedItem.toString())
             val horasFin = horasRango(horaInicioSeleccionada, 23)
@@ -46,13 +44,11 @@ class reserve_selection : AppCompatActivity() {
                 setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             }
             spFin.adapter = adapterFin
-            spFin.setSelection(0) // siempre arranca en la primera opción válida
+            spFin.setSelection(0)
         }
 
-        // Carga inicial del spinner fin
         actualizarSpinnerFin()
 
-        // Cada vez que cambie inicio, recalculamos fin
         spInicio.onItemSelectedListener = object : android.widget.AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: android.widget.AdapterView<*>?,
@@ -69,7 +65,6 @@ class reserve_selection : AppCompatActivity() {
 
         val spinnerJuego = findViewById<Spinner>(R.id.spinner_juego)
 
-// 👉 Lista de juegos que tú defines
         val juegos = listOf(
             "Sushi Go",
             "Catan",
@@ -79,19 +74,16 @@ class reserve_selection : AppCompatActivity() {
             "Coffee Rush"
         )
 
-// Adapter para el Spinner
         val adapterJuego = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_item,
             juegos
         )
 
-// Layout del desplegable
         adapterJuego.setDropDownViewResource(
             android.R.layout.simple_spinner_dropdown_item
         )
 
-// Asignar adapter al spinner
         spinnerJuego.adapter = adapterJuego
 
         val btnBack = findViewById<Button>(R.id.button_backButton)
