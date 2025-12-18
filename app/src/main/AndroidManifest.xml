@@ -16,13 +16,17 @@
         android:theme="@style/Theme.LaPosada">
         <activity
             android:name=".pantallas.menuJuegos.GamesMenuActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".Reservas_confirmadas"
             android:exported="false" />
+
         <activity
-            android:name=".EditGameActivity"
+            android:name=".pantallas.menuJuegos.EditGameActivity"
             android:exported="false" />
         <activity
-            android:name=".pantallas.mesas.reserve_selection"
+            android:name=".reserve_selection"
             android:exported="false" />
         <activity
             android:name=".pantallas.menuJuegos.AddGameActivity"

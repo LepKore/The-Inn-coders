@@ -10,18 +10,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.laposada.R
-import com.example.laposada.dataBase.GameDatabase
 
 class reserve_selection : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_reserve_selection)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        //ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        //    val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+         //   v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+         //   insets
+        //}
 
         val mesaNumero = intent.getStringExtra("mesaNumero")
 
