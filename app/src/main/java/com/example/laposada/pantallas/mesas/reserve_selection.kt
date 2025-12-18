@@ -27,6 +27,9 @@ class reserve_selection : AppCompatActivity() {
     private var horaInicio: String? = null
     private var horaFin: String? = null
     private var diaEvento: String? = null
+    private var horaInicioMinutos: Int? = null
+    private var horaFinMinutos: Int? = null
+
     private var juegoSeleccionado: Int? = null
 
     lateinit var binding: ActivityReserveSelectionBinding
@@ -97,13 +100,41 @@ class reserve_selection : AppCompatActivity() {
         val timePicker = TimePickerDialog(
             this,
             { _, h, m ->
-                val tiempo = String.format("%02d:%02d", h, m)
+                val minutosTotales = h * 60 + m
+                val tiempoFormateado = String.format("%02d:%02d", h, m)
+
                 if (esInicio) {
-                    horaInicio = tiempo
-                    binding.textViewHoraInicio.text = tiempo
+                    horaInicioMinutos = minutosTotales
+                    horaInicio = tiempoFormateado
+                    binding.textViewHoraInicio.text = tiempoFormateado
+
+                    if (horaFinMinutos != null && horaFinMinutos!! <= minutosTotales) {
+                        horaFinMinutos = null
+                        horaFin = null
+                        binding.textviewHoraFin.text = "Selecciona la hora de fin"
+                    }
                 } else {
-                    horaFin = tiempo
-                    binding.textviewHoraFin.text = tiempo
+                    if (horaInicioMinutos == null) {
+                        Toast.makeText(
+                            this,
+                            "Primero seleccione la hora de inicio",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        return@TimePickerDialog
+                    }
+
+                    if (minutosTotales <= horaInicioMinutos!!) {
+                        Toast.makeText(
+                            this,
+                            "La hora de fin debe ser mayor a la hora de inicio",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        return@TimePickerDialog
+                    }
+
+                    horaFinMinutos = minutosTotales
+                    horaFin = tiempoFormateado
+                    binding.textviewHoraFin.text = tiempoFormateado
                 }
             },
             hour,
@@ -140,8 +171,8 @@ class reserve_selection : AppCompatActivity() {
     }
 
     private fun guardarReserva() {
-        if (horaInicio == null || horaFin == null) {
-            Toast.makeText(this, "Seleccione la hora de inicio y fin", Toast.LENGTH_SHORT).show()
+        if (horaInicio == null || horaFin == null || diaEvento == null) {
+            Toast.makeText(this, "Seleccione un valor para cada campo de tiempo", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -151,7 +182,7 @@ class reserve_selection : AppCompatActivity() {
             horaInicio = horaInicio!!,
             horaFin = horaFin!!,
             dia = diaEvento?: "",
-            juego = juegoSeleccionado
+            juego = juegoSeleccionado?: -1
         )
 
 

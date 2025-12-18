@@ -23,6 +23,10 @@ interface DaoGame {
     @Query("DELETE FROM games WHERE id = :idGame")
     suspend fun deleteById(idGame: Int)
 
+    @Query("SELECT * FROM games WHERE id = :idGame")
+    suspend fun getById(idGame: Int): GameDataClass
+
+
     @Query("DELETE FROM games")
     suspend fun deleteAll()
 

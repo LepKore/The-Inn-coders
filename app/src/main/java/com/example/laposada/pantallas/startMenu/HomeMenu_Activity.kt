@@ -19,6 +19,7 @@ import com.example.laposada.dataBase.DaoFood
 import com.example.laposada.dataBase.DaoFoodType
 import com.example.laposada.dataBase.DaoGame
 import com.example.laposada.dataBase.DaoGameType
+import com.example.laposada.dataBase.DaoReservas
 import com.example.laposada.dataBase.GeneralDataBase
 import com.example.laposada.dataClass.FoodDataClass
 import com.example.laposada.dataClass.FoodTypeDataClass
@@ -27,6 +28,7 @@ import com.example.laposada.dataClass.GameTypeDataClass
 import com.example.laposada.databinding.ActivityHomeMenuBinding
 import com.example.laposada.pantallas.menuComida.FoodMenuActivity.Companion.DATABASE_NAME
 import com.example.laposada.pantallas.mesas.Selection_Of_Tables
+import com.example.laposada.pantallas.verReservas.Reservas_confirmadas
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -43,6 +45,7 @@ class HomeMenu_Activity : AppCompatActivity() {
     lateinit var daoTiposGame: DaoGameType
     lateinit var daoFood: DaoFood
     lateinit var daoGame: DaoGame
+    lateinit var daoReservas: DaoReservas
 
 
 
@@ -66,6 +69,8 @@ class HomeMenu_Activity : AppCompatActivity() {
         daoTiposGame = dataBase.DaoGameType()
         daoGame = dataBase.DaoGame()
         daoFood = dataBase.DaoFood()
+        daoReservas = dataBase.DaoReservas()
+
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -84,6 +89,7 @@ class HomeMenu_Activity : AppCompatActivity() {
             daoTiposGame.deleteAll()
             daoGame.deleteAll()
             daoFood.deleteAll()
+            daoReservas.deleteAll()
         }
     }
 
@@ -211,6 +217,11 @@ class HomeMenu_Activity : AppCompatActivity() {
             val intent = Intent(this, Selection_Of_Tables::class.java)
             startActivity(intent)
         }
+
+         binding.cardViewReservasMenu.setOnClickListener {
+             val intent = Intent(this, Reservas_confirmadas::class.java)
+             startActivity(intent)
+         }
     }
 
 }
