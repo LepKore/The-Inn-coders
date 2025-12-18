@@ -18,9 +18,6 @@
             android:name=".Reservas_confirmadas"
             android:exported="false" />
         <activity
-            android:name=".dataClass.Reservas_confirmadas"
-            android:exported="false" />
-        <activity
             android:name=".EditGameActivity"
             android:exported="false" />
         <activity
