@@ -15,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LaPosada">
         <activity
+            android:name=".Reservas_confirmadas"
+            android:exported="false" />
+        <activity
+            android:name=".dataClass.Reservas_confirmadas"
+            android:exported="false" />
+        <activity
             android:name=".EditGameActivity"
             android:exported="false" />
         <activity
@@ -68,7 +74,6 @@
         <activity
             android:name=".Selection_Of_Tables"
             android:exported="false" />
-
         <activity
             android:name=".HomeMenu_Activity"
             android:exported="false" />
@@ -78,7 +83,6 @@
         <activity
             android:name=".Login_activity"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true" />

@@ -1,11 +1,15 @@
 package com.example.laposada
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.laposada.dataBase.GameDatabase
 
 class reserve_selection : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,5 +26,92 @@ class reserve_selection : AppCompatActivity() {
 
         val mesaTitle: TextView = findViewById(R.id.titulo_de_mesa)
         mesaTitle.text = mesaNumero // Se actualizará con el número de la mesa seleccionada
+
+        val spInicio = findViewById<Spinner>(R.id.spinner_hora_inicio)
+        val spFin = findViewById<Spinner>(R.id.spinner_hora_fin)
+
+        // 1) Hora inicio: 15:00 a 21:00
+        val horasInicio = horasRango(15, 21)
+        val adapterInicio = ArrayAdapter(this, android.R.layout.simple_spinner_item, horasInicio).apply {
+            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        }
+        spInicio.adapter = adapterInicio
+
+        // 2) Función para actualizar Hora fin según inicio seleccionado
+        fun actualizarSpinnerFin() {
+            val horaInicioSeleccionada = indiceDeHora(spInicio.selectedItem.toString())
+            val horasFin = horasRango(horaInicioSeleccionada, 23)
+
+            val adapterFin = ArrayAdapter(this, android.R.layout.simple_spinner_item, horasFin).apply {
+                setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            }
+            spFin.adapter = adapterFin
+            spFin.setSelection(0) // siempre arranca en la primera opción válida
+        }
+
+        // Carga inicial del spinner fin
+        actualizarSpinnerFin()
+
+        // Cada vez que cambie inicio, recalculamos fin
+        spInicio.onItemSelectedListener = object : android.widget.AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: android.widget.AdapterView<*>?,
+                view: android.view.View?,
+                position: Int,
+                id: Long
+            ) {
+                actualizarSpinnerFin()
+            }
+
+            override fun onNothingSelected(parent: android.widget.AdapterView<*>?) {}
+
+        }
+
+        val spinnerJuego = findViewById<Spinner>(R.id.spinner_juego)
+
+// 👉 Lista de juegos que tú defines
+        val juegos = listOf(
+            "Sushi Go",
+            "Catan",
+            "Uno",
+            "Exploding Kittens",
+            "Carcassonne",
+            "Coffee Rush"
+        )
+
+// Adapter para el Spinner
+        val adapterJuego = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            juegos
+        )
+
+// Layout del desplegable
+        adapterJuego.setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item
+        )
+
+// Asignar adapter al spinner
+        spinnerJuego.adapter = adapterJuego
+
+        val btnBack = findViewById<Button>(R.id.button_backButton)
+        btnBack.setOnClickListener {
+            finish()
+        }
+
     }
+
+    fun horasRango(inicio: Int, fin: Int): List<String> {
+        val lista = mutableListOf<String>()
+        for (h in inicio..fin) {
+            lista.add(String.format("%02d:00", h))
+        }
+        return lista
+    }
+
+    fun indiceDeHora(texto: String): Int {
+        // "15:00" -> 15
+        return texto.substring(0, 2).toInt()
+    }
+
 }

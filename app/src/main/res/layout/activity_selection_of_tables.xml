@@ -102,10 +102,10 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:backgroundTint="@color/white"
             android:src="@drawable/circle_white"
-            android:text="@string/back_button"
-            android:contentDescription="@string/back_button"
-            />
+            android:text="@string/back_button" />
 
         <View
             android:layout_width="0dp"
@@ -118,6 +118,7 @@
             android:layout_height="40dp"
             android:layout_weight="4"
             android:backgroundTint="@color/brown"
+            android:textColor="@color/white"
             android:text="@string/Ver_mapa"
             android:contentDescription="@string/Ver_mapa"
             />
