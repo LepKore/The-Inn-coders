@@ -51,6 +51,7 @@ class FoodAdapter
         }
     }
 
+
     fun addDataCards(list: List<FoodDataClass>) {
         dataCards.clear()
         dataCards.addAll(list)
