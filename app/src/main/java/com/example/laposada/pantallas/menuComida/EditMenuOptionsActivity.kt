@@ -1,4 +1,4 @@
-package com.example.laposada
+package com.example.laposada.pantallas.menuComida
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.laposada.R
 import com.example.laposada.databinding.ActivityEditMenuOptionsBinding
 
 class EditMenuOptionsActivity : AppCompatActivity() {
@@ -32,7 +33,7 @@ class EditMenuOptionsActivity : AppCompatActivity() {
         binding.buttonBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
-        
+
         binding.buttonAdd.setOnClickListener {
             val intent = Intent(this, AddFoodActivity::class.java)
             startActivity(intent)

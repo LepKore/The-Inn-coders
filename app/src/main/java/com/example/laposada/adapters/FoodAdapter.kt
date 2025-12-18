@@ -1,12 +1,14 @@
 package com.example.laposada.adapters
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.laposada.R
 import com.example.laposada.dataClass.FoodDataClass
 import com.example.laposada.databinding.ItemFoodBinding
+import java.io.File
 
 class FoodAdapter
     (private val onItemClick: (FoodDataClass) -> Unit)
@@ -38,7 +40,9 @@ class FoodAdapter
     inner class FoodCardViewHolder(private val binding: ItemFoodBinding):
         RecyclerView.ViewHolder(binding.root) {
         fun binding(data: FoodDataClass) {
-            binding.linearLayoutFoodImage.setBackgroundResource(R.drawable.papas_fritas)
+            val imageFile = File(binding.root.context.filesDir, data.imagen)
+            binding.linearLayoutFoodImage.background =
+                Drawable.createFromPath(imageFile.path)
             binding.textViewFoodName.text = data.nombre
             binding.root.setOnClickListener {
                 onItemClick(data)

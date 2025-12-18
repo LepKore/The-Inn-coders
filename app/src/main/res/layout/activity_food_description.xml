@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FoodDescriptionActivity"
+    tools:context=".pantallas.menuComida.FoodDescriptionActivity"
     android:background="@drawable/fondo_default"
     >
 
@@ -140,19 +140,25 @@
         app:layout_constraintHorizontal_bias="0.1"
         android:layout_margin="20dp"
         />
-    <TextView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/recyclerView_tipos"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="30dp"
-        android:background="@color/white"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        android:fontFamily="serif"
-        android:id="@+id/textView_descriptionFood"
-        android:padding="10dp"
-        />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/textView_descriptionFood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:padding="16dp"
+            />
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

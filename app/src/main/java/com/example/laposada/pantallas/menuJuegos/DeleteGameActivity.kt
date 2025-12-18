@@ -1,4 +1,4 @@
-package com.example.laposada
+package com.example.laposada.pantallas.menuJuegos
 
 import android.os.Bundle
 import android.widget.Toast
@@ -8,11 +8,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
+import com.example.laposada.R
 import com.example.laposada.adapters.GameSpinnerAdapter
 import com.example.laposada.dataBase.DaoGame
-import com.example.laposada.dataBase.GameDatabase
+import com.example.laposada.dataBase.GeneralDataBase
 import com.example.laposada.dataClass.GameDataClass
 import com.example.laposada.databinding.ActivityDeleteGameBinding
+import com.example.laposada.pantallas.menuComida.FoodMenuActivity.Companion.DATABASE_NAME
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -34,10 +36,14 @@ class DeleteGameActivity : AppCompatActivity() {
         binding = ActivityDeleteGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val gameDatabase: GameDatabase = Room.databaseBuilder(
-            context, GameDatabase::class.java, "GAME_DATABASE_NAME"
-        ).build()
-        daoGame = gameDatabase.DaoGame()
+        val dataBase: GeneralDataBase = Room.databaseBuilder(
+            context,
+            GeneralDataBase::class.java,
+            DATABASE_NAME
+        )
+//            .fallbackToDestructiveMigration()
+            .build()
+        daoGame = dataBase.DaoGame()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

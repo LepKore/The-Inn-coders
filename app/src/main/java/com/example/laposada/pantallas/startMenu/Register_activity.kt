@@ -1,4 +1,4 @@
-package com.example.laposada
+package com.example.laposada.pantallas.startMenu
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.laposada.R
 import com.example.laposada.databinding.ActivityRegisterBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -45,14 +46,32 @@ class Register_activity : AppCompatActivity() {
 
     fun confirmarPassword() {
         binding.buttonSend.setOnClickListener {
-            val mail = binding.editTextLoginMail.text.toString()
+            val mail = binding.editTextLoginMail.text.toString().trim()
             val password = binding.editTextPasswordUser.text.toString()
             val confirmPassword = binding.editTextConfirmPasswordUser.text.toString()
 
-            registrarUsuario(mail, password)
-        }
+            val passwordRegex = Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[^\\s]{8,}\$")
 
+            when {
+                mail.isEmpty() -> {
+                    Toast.makeText(this, "Ingresa tu correo", Toast.LENGTH_SHORT).show()
+                }
+                password.isEmpty() || confirmPassword.isEmpty() -> {
+                    Toast.makeText(this, "Completa ambos campos de contraseña", Toast.LENGTH_SHORT).show()
+                }
+                password != confirmPassword -> {
+                    Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
+                }
+                !password.matches(passwordRegex) -> {
+                    Toast.makeText(this, "La contraseña debe tener al menos 8 caracteres, mayúscula, minúscula y número, sin espacios", Toast.LENGTH_LONG).show()
+                }
+                else -> {
+                    registrarUsuario(mail, password)
+                }
+            }
+        }
     }
+
 
     fun registrarUsuario(mail:String, password:String){
         auth.createUserWithEmailAndPassword(mail, password)

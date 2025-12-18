@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.laposada.R
 import com.example.laposada.dataBase.GameDatabase
 
 class reserve_selection : AppCompatActivity() {

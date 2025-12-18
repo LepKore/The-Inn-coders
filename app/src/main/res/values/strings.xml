@@ -48,5 +48,9 @@
     <string name="Map_button">map_Button</string>
     <string name="Ver_mapa">Ver mapa</string>
     <string name="mesa_1">Mesa #1</string>
+    <string name="selectTypesSubT">Seleccione los tipos</string>
+    <string name="saveButtonText">Guardar</string>
+    <string name="InputNameLabel">Ingrese el nombre</string>
+    <string name="descriptionTitle">Descripcion</string>
 
 </resources>
