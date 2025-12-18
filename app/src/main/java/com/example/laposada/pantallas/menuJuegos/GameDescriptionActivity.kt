@@ -1,4 +1,4 @@
-package com.example.laposada.pantallas.menuComida
+package com.example.laposada.pantallas.menuJuegos
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -11,30 +11,31 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.example.laposada.R
 import com.example.laposada.adapters.LabelAdapter
-import com.example.laposada.dataBase.DaoFood
-import com.example.laposada.dataBase.DaoFoodType
+import com.example.laposada.dataBase.DaoGame
+import com.example.laposada.dataBase.DaoGameType
 import com.example.laposada.dataBase.GeneralDataBase
-import com.example.laposada.dataClass.FoodDataClass
-import com.example.laposada.databinding.ActivityFoodDescriptionBinding
+import com.example.laposada.dataClass.GameDataClass
+import com.example.laposada.databinding.ActivityGameDescriptionBinding
 import com.example.laposada.pantallas.menuComida.FoodMenuActivity.Companion.DATABASE_NAME
-import com.example.laposada.pantallas.menuComida.FoodMenuActivity.Companion.FOOD_ID
+import com.example.laposada.pantallas.menuJuegos.GamesMenuActivity.Companion.GAME_ID
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 
-class FoodDescriptionActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityFoodDescriptionBinding
+class GameDescriptionActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityGameDescriptionBinding
     private val context = this
-    private lateinit var daoFood: DaoFood
-    private lateinit var daoFoodType: DaoFoodType
+    private lateinit var daoGame: DaoGame
+    private lateinit var daoGameType: DaoGameType
+
     private val adapter: LabelAdapter by lazy { LabelAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
-        binding = ActivityFoodDescriptionBinding.inflate(layoutInflater)
+        binding = ActivityGameDescriptionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val dataBase = Room.databaseBuilder(
@@ -45,9 +46,8 @@ class FoodDescriptionActivity : AppCompatActivity() {
 //            .fallbackToDestructiveMigration()
             .build()
 
-        daoFood     = dataBase.DaoFood()
-        daoFoodType = dataBase.DaoFoodType()
-
+        daoGame     = dataBase.DaoGame()
+        daoGameType = dataBase.DaoGameType()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -57,29 +57,33 @@ class FoodDescriptionActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
 
-            val foodId = intent.getIntExtra(FOOD_ID, -1)
+            val gameId = intent.getIntExtra(GAME_ID, -1)
             val result = withContext(Dispatchers.IO) {
-                val food = daoFood.getAll().find { it.id == foodId }
+                val food = daoGame.getAll().find { it.id == gameId }
 
-                val tipos = food?.tipos?.map { id ->
-                    daoFoodType.selectById(id)
+                val tipos = food?.categorias?.map { id ->
+                    daoGameType.selectById(id)
                 }
 
                 Pair(food, tipos)
             }
 
-            val food = result.first
+            val game = result.first
             val tipos = result.second
-            food?.let { f ->
-                val imageFile = File(filesDir, f.imagen)
-                if (imageFile.exists()) {
-                    binding.layoutImageFood.background =
-                        Drawable.createFromPath(imageFile.path)
+            game?.let { f ->
+                val imageFileCaja = File(filesDir, f.imagenCaja)
+                val imageFileGame = File(filesDir, f.imagenGame)
+                if (imageFileCaja.exists()) {
+                    binding.imageGame1.background =
+                        Drawable.createFromPath(imageFileCaja.path)
+                }
+                if (imageFileGame.exists()) {
+                    binding.imageGame2.background =
+                        Drawable.createFromPath(imageFileGame.path)
                 }
 
-                binding.textViewFoodName.text = f.nombre
-                binding.textViewPrice.text = "Bs. ${f.precio}"
-                binding.textViewDescriptionFood.text = f.descripcion
+                binding.textViewGameName.text = f.nombre
+                binding.textDescription.text = f.descripcion
 
                 tipos?.let {
                     adapter.addDataCards(it)
@@ -89,13 +93,7 @@ class FoodDescriptionActivity : AppCompatActivity() {
             setupRecyclerView()
             setupListeners()
         }
-
     }
-
-    private suspend fun obtenerDatos(): List<FoodDataClass> {
-        return daoFood.getAll()
-    }
-
 
     private fun setupRecyclerView() {
         binding.recyclerViewTipos.layoutManager =

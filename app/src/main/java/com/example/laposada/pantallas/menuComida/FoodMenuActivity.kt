@@ -76,7 +76,6 @@ class FoodMenuActivity : AppCompatActivity() {
             insets
         }
 
-
         setupRecyclerView()
         setupListeners()
     }

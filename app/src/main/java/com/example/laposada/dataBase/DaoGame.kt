@@ -5,6 +5,8 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
+import com.example.laposada.dataClass.FoodDataClass
 import com.example.laposada.dataClass.GameDataClass
 
 @Dao
@@ -26,4 +28,7 @@ interface DaoGame {
 
     @Insert
     suspend fun insert(food: GameDataClass)
+
+    @Update
+    suspend fun update(food: GameDataClass)
 }

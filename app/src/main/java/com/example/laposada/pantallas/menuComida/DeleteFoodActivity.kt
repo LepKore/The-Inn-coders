@@ -14,6 +14,7 @@ import com.example.laposada.dataBase.DaoFood
 import com.example.laposada.dataBase.GeneralDataBase
 import com.example.laposada.dataClass.FoodDataClass
 import com.example.laposada.databinding.ActivityDeleteFoodBinding
+import com.example.laposada.pantallas.menuComida.FoodMenuActivity.Companion.DATABASE_NAME
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -36,7 +37,7 @@ class DeleteFoodActivity : AppCompatActivity() {
         setContentView(binding.root)
         val database: GeneralDataBase = Room.databaseBuilder(
             context, GeneralDataBase::class.java,
-            FoodMenuActivity.Companion.DATABASE_NAME
+            DATABASE_NAME
         )
 //            .fallbackToDestructiveMigration()
             .build()

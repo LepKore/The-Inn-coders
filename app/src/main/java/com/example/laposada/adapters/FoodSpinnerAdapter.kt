@@ -19,7 +19,7 @@ class FoodSpinnerAdapter(
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView ?: LayoutInflater.from(context)
-            .inflate(R.layout.food_spinner_item, parent, false)
+            .inflate(R.layout.spinner_item, parent, false)
         val textView = view.findViewById<TextView>(R.id.textViewSpinner)
         textView.text = foodList[position].nombre
         return view
@@ -27,7 +27,7 @@ class FoodSpinnerAdapter(
 
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView ?: LayoutInflater.from(context)
-            .inflate(R.layout.food_spinner_item, parent, false)
+            .inflate(R.layout.spinner_item, parent, false)
         val textView = view.findViewById<TextView>(R.id.textViewSpinner)
         textView.text = foodList[position].nombre
 

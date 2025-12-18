@@ -97,6 +97,8 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
                 android:textSize="14sp"
+                android:inputType="text"
+                android:maxLength="13"
                 app:layout_constraintTop_toBottomOf="@id/labelName" />
 
 
@@ -151,7 +153,8 @@
                 android:layout_marginEnd="32dp"
                 android:background="@color/gray_500"
                 android:padding="10dp"
-                android:text="Seleccione los tipos"
+                android:text="@string/selectTypesSubT"
+                android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@id/labelType"
                 android:gravity="center_vertical"
                 />
@@ -176,7 +179,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
                 android:background="@color/gray_500"
-                android:hint="Ingrese una descripción"
+                android:hint="@string/hint_description"
                 android:padding="10dp"
                 android:textColorHint="@color/black"
                 android:textColor="@color/black"

@@ -1,4 +1,4 @@
-package com.example.laposada
+package com.example.laposada.pantallas.menuJuegos
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.laposada.R
 import com.example.laposada.databinding.ActivityEditGameOptionsBinding
 
 class EditGameOptionsActivity : AppCompatActivity() {
@@ -14,7 +15,6 @@ class EditGameOptionsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
 
         binding = ActivityEditGameOptionsBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -32,7 +32,9 @@ class EditGameOptionsActivity : AppCompatActivity() {
         binding.buttonBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
-        
+
+        binding.buttonAdd
+
         binding.buttonAdd.setOnClickListener {
             val intent = Intent(this, AddGameActivity::class.java)
             startActivity(intent)

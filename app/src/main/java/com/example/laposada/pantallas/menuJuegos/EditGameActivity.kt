@@ -1,4 +1,4 @@
-package com.example.laposada.pantallas.menuComida
+package com.example.laposada.pantallas.menuJuegos
 
 import android.net.Uri
 import android.os.Bundle
@@ -13,13 +13,13 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.example.laposada.R
-import com.example.laposada.adapters.FoodSpinnerAdapter
-import com.example.laposada.dataBase.DaoFood
-import com.example.laposada.dataBase.DaoFoodType
+import com.example.laposada.adapters.GameSpinnerAdapter
+import com.example.laposada.dataBase.DaoGame
+import com.example.laposada.dataBase.DaoGameType
 import com.example.laposada.dataBase.GeneralDataBase
-import com.example.laposada.dataClass.FoodDataClass
-import com.example.laposada.dataClass.FoodTypeDataClass
-import com.example.laposada.databinding.ActivityEditFoodBinding
+import com.example.laposada.dataClass.GameDataClass
+import com.example.laposada.dataClass.GameTypeDataClass
+import com.example.laposada.databinding.ActivityEditGameBinding
 import com.example.laposada.pantallas.menuComida.FoodMenuActivity.Companion.DATABASE_NAME
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -27,31 +27,43 @@ import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
 
-class EditFoodActivity : AppCompatActivity() {
+class EditGameActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityEditFoodBinding
+    private lateinit var binding: ActivityEditGameBinding
     private val context = this
 
-    private lateinit var daoFood: DaoFood
-    private lateinit var daoTipos: DaoFoodType
+    private lateinit var daoGame: DaoGame
+    private lateinit var daoTipos: DaoGameType
 
-    private val foodList = mutableListOf<FoodDataClass>()
+    private val gameList = mutableListOf<GameDataClass>()
     private val spinnerAdapter by lazy {
-        FoodSpinnerAdapter(this, foodList)
+        GameSpinnerAdapter(this, gameList)
     }
 
-    private lateinit var tipos: List<FoodTypeDataClass>
+    private var currentImageCajaId: String? = null
+    private var currentImageGameId: String? = null
+    private var selectedGame: GameDataClass? = null
+
+    private lateinit var tipos: List<GameTypeDataClass>
     private val selectedTipos = mutableListOf<Int>()
 
-
-    private var currentImageId: String? = null
-    private var selectedFood: FoodDataClass? = null
-
-    private val pickImageLauncher =
+    private val pickImageLauncherCaja =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             uri?.let {
                 val imageId = saveImageToInternalStorage(it)
-                currentImageId = imageId
+                currentImageCajaId = imageId
+                val file = File(filesDir, imageId)
+                binding.imagePlaceHolder1.background = null
+                binding.imagePlaceHolder1.setBackgroundDrawable(
+                    android.graphics.drawable.Drawable.createFromPath(file.absolutePath)
+                )
+            }
+        }
+    private val pickImageLauncherGame =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            uri?.let {
+                val imageId = saveImageToInternalStorage(it)
+                currentImageGameId = imageId
                 val file = File(filesDir, imageId)
                 binding.imagePlaceHolder2.background = null
                 binding.imagePlaceHolder2.setBackgroundDrawable(
@@ -60,11 +72,10 @@ class EditFoodActivity : AppCompatActivity() {
             }
         }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
-        binding = ActivityEditFoodBinding.inflate(layoutInflater)
+        enableEdgeToEdge()
+        binding = ActivityEditGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val database = Room.databaseBuilder(
@@ -73,29 +84,28 @@ class EditFoodActivity : AppCompatActivity() {
             DATABASE_NAME
         ).build()
 
-        daoFood = database.DaoFood()
-        daoTipos = database.DaoFoodType()
+        daoGame = database.DaoGame()
+        daoTipos = database.DaoGameType()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        binding.spinnerJuego.adapter = spinnerAdapter
 
-        binding.spinnerComida.adapter = spinnerAdapter
-
-        loadFoods()
+        loadGames()
         loadTipos()
         setupListeners()
     }
 
-    private fun setupListeners() {
 
+    private fun setupListeners() {
         binding.buttonBack.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        binding.spinnerComida.onItemSelectedListener =
+        binding.spinnerJuego.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>,
@@ -103,8 +113,8 @@ class EditFoodActivity : AppCompatActivity() {
                     position: Int,
                     id: Long
                 ) {
-                    selectedFood = foodList[position]
-                    fillFields(selectedFood!!)
+                    selectedGame = gameList[position]
+                    fillFields(selectedGame!!)
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {}
@@ -137,31 +147,25 @@ class EditFoodActivity : AppCompatActivity() {
                 .show()
         }
 
-
+        binding.imagePlaceHolder1.setOnClickListener {
+            pickImageLauncherCaja.launch("image/*")
+        }
         binding.imagePlaceHolder2.setOnClickListener {
-            pickImageLauncher.launch("image/*")
+            pickImageLauncherGame.launch("image/*")
         }
 
-        binding.buttonEdit.setOnClickListener {
-            updateFood()
+        binding.buttonSave.setOnClickListener {
+            updateGame()
         }
 
-//        binding.inputDescripcion.setOnFocusChangeListener { v, hasFocus ->
-//            if (hasFocus) {
-//                binding.scrollView.post {
-//                    binding.scrollView.smoothScrollTo(0, v.bottom)
-//                }
-//            }
-//        }
     }
 
-    private fun fillFields(food: FoodDataClass) {
-        binding.inputName2.setText(food.nombre)
-        binding.inputPrice2.setText(food.precio.toString())
-        binding.inputDescripcion.setText(food.descripcion)
+    private fun fillFields(game: GameDataClass) {
+        binding.inputName.setText(game.nombre)
+        binding.inputDescription.setText(game.descripcion)
 
         selectedTipos.clear()
-        selectedTipos.addAll(food.tipos)
+        selectedTipos.addAll(game.categorias)
         lifecycleScope.launch {
             val nombresTipos = withContext(Dispatchers.IO) {
                 selectedTipos.mapNotNull { id -> daoTipos.selectById(id) }
@@ -170,27 +174,34 @@ class EditFoodActivity : AppCompatActivity() {
             else nombresTipos.joinToString(", ")
         }
 
-        currentImageId = food.imagen
-        val file = File(filesDir, food.imagen)
-        if (file.exists()) {
+        currentImageCajaId = game.imagenCaja
+        currentImageGameId = game.imagenGame
+        val fileCaja = File(filesDir, game.imagenCaja)
+        val fileGame = File(filesDir, game.imagenGame)
+
+        if (fileCaja.exists()) {
+            binding.imagePlaceHolder1.background = null
+            binding.imagePlaceHolder1.setBackgroundDrawable(
+                android.graphics.drawable.Drawable.createFromPath(fileCaja.absolutePath)
+            )
+        }
+        if (fileGame.exists()) {
             binding.imagePlaceHolder2.background = null
             binding.imagePlaceHolder2.setBackgroundDrawable(
-                android.graphics.drawable.Drawable.createFromPath(file.absolutePath)
+                android.graphics.drawable.Drawable.createFromPath(fileGame.absolutePath)
             )
         }
     }
-
-    private fun loadFoods() {
+    private fun loadGames() {
         lifecycleScope.launch {
-            val foods = withContext(Dispatchers.IO) {
-                daoFood.getAll()
+            val games = withContext(Dispatchers.IO) {
+                daoGame.getAll()
             }
-            foodList.clear()
-            foodList.addAll(foods)
+            gameList.clear()
+            gameList.addAll(games)
             spinnerAdapter.notifyDataSetChanged()
         }
     }
-
     private fun loadTipos() {
         lifecycleScope.launch {
             tipos = withContext(Dispatchers.IO) {
@@ -198,22 +209,21 @@ class EditFoodActivity : AppCompatActivity() {
             }
         }
     }
+    private fun updateGame() {
+        val game = selectedGame ?: return
 
-    private fun updateFood() {
-        val food = selectedFood ?: return
-
-        val updated = food.copy(
-            nombre = binding.inputName2.text.toString(),
-            precio = binding.inputPrice2.text.toString().toDouble(),
-            descripcion = binding.inputDescripcion.text.toString(),
-            imagen = currentImageId!!,
-            tipos = selectedTipos
+        val updated = game.copy(
+            nombre = binding.inputName.text.toString(),
+            descripcion = binding.inputDescription.text.toString(),
+            imagenCaja = currentImageCajaId!!,
+            imagenGame = currentImageGameId!!,
+            categorias = selectedTipos
         )
 
         lifecycleScope.launch(Dispatchers.IO) {
-            daoFood.update(updated)
+            daoGame.update(updated)
             withContext(Dispatchers.Main) {
-                Toast.makeText(context, "Comida actualizada", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Juego actualizado", Toast.LENGTH_SHORT).show()
             }
         }
     }

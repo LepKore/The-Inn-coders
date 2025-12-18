@@ -21,23 +21,24 @@
             android:name=".pantallas.mesas.reserve_selection"
             android:exported="false" />
         <activity
-            android:name=".DeleteGameActivity"
+            android:name=".pantallas.menuJuegos.AddGameActivity"
             android:exported="false" />
         <activity
-            android:name=".EditGameOptionsActivity"
+            android:name=".pantallas.menuJuegos.EditGameActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
-            android:name=".GameDescriptionActivity"
+            android:name=".pantallas.menuJuegos.DeleteGameActivity"
             android:exported="false" />
         <activity
-            android:name=".GamesMenuActivity"
+            android:name=".pantallas.menuJuegos.EditGameOptionsActivity"
             android:exported="false" />
         <activity
-            android:name=".reserve_selection"
+            android:name=".pantallas.menuJuegos.GameDescriptionActivity"
             android:exported="false" />
         <activity
             android:name=".pantallas.menuComida.EditFoodActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".pantallas.menuComida.AddFoodActivity"
@@ -61,7 +62,6 @@
             android:name=".pantallas.menuComida.FoodDescriptionActivity"
             android:exported="false" />
         <activity
-            android:name=".FoodMenuActivity"
             android:name=".pantallas.menuComida.FoodMenuActivity"
             android:exported="false" />
         <activity

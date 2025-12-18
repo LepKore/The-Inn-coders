@@ -28,12 +28,12 @@
                 app:cardCornerRadius="30dp"
                 android:layout_margin="10dp">
 
-                <ImageView
+                <LinearLayout
                     android:id="@+id/imageViewGame"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-
+                    android:orientation="vertical"
                     />
             </androidx.cardview.widget.CardView>
             
