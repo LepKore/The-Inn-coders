@@ -17,8 +17,16 @@
         <activity
             android:name=".pantallas.menuJuegos.GamesMenuActivity"
             android:exported="false" />
+
         <activity
-            android:name=".pantallas.mesas.reserve_selection"
+            android:name=".Reservas_confirmadas"
+            android:exported="false" />
+
+        <activity
+            android:name=".pantallas.menuJuegos.EditGameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".reserve_selection"
             android:exported="false" />
         <activity
             android:name=".pantallas.menuJuegos.AddGameActivity"
@@ -70,7 +78,6 @@
         <activity
             android:name=".pantallas.mesas.Selection_Of_Tables"
             android:exported="false" />
-
         <activity
             android:name=".pantallas.startMenu.HomeMenu_Activity"
             android:exported="false" />
@@ -80,7 +87,6 @@
         <activity
             android:name=".pantallas.startMenu.Login_activity"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true" />

@@ -1,27 +1,20 @@
-package com.example.laposada.pantallas.mesas
+package com.example.laposada
 
 import android.os.Bundle
-import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.laposada.R
 
-class Map_Tables : AppCompatActivity() {
+class Reservas_confirmadas : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_map_tables)
+        setContentView(R.layout.activity_reservas_confirmadas)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-        }
-
-        val backButton: Button = findViewById(R.id.button_backButton)
-        backButton.setOnClickListener {
-            onBackPressed()
         }
     }
 }
