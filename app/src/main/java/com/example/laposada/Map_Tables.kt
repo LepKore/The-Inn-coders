@@ -20,7 +20,7 @@ class Map_Tables : AppCompatActivity() {
 
         val backButton: Button = findViewById(R.id.button_backButton)
         backButton.setOnClickListener {
-            onBackPressed()  // Esto redirige a la actividad anterior
+            onBackPressed()
         }
     }
 }

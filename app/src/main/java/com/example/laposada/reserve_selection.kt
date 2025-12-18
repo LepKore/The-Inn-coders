@@ -102,7 +102,6 @@ class reserve_selection : AppCompatActivity() {
     }
 
     fun indiceDeHora(texto: String): Int {
-        // "15:00" -> 15
         return texto.substring(0, 2).toInt()
     }
 
